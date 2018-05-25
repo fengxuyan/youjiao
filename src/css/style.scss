@@ -1,0 +1,275 @@
+@mixin headpic($width){
+  display: inline-block;
+  width: $width;
+  img {
+    width: $width;
+    height: $width;
+    border-radius: 50%;
+  }
+}
+.g-bargin-container {
+  background-color: #E5F8F2;
+  .g-brief-box {
+    .s-rules {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding-right: .4rem;
+      height: 1rem;
+      text-align: right;
+      .icon-rules {
+        display: inline-block;
+        padding-right: .1rem;
+        width: .32rem;
+        height: .32rem;
+        &:after {
+          content: '';
+          display: inline-block;
+          width: 100%;
+          height: 100%;
+          background-image: url("../images/rules.png");
+          background-size: 100% 100%;
+          background-position: center center;
+        }
+      }
+    }
+    .g-brief-introduce {
+      display: flex;
+      align-items: center;
+      box-sizing: border-box;
+      padding: 0 .29rem;
+      margin: 0 auto;
+      width: 9.2rem;
+      height: 2.53rem;
+      background-color: #fff;
+      border: 0.04rem solid #5CC989;
+      border-radius: 0.13rem;
+      .g-introduce-left {
+        display: inline-block;
+        float: left;
+        width: 2.67rem;
+        height: 2rem;
+        img {
+          height: 100%;
+          width: 100%;
+        }
+      }
+      .g-introduce-right {
+        display: inline-block;
+        padding-left: .27rem;
+        width: 65%;
+        .g-price-num {
+          margin-top: .29rem;
+        }
+        .txt-tilte {
+          color: #333;
+          font-size: .4rem;
+        }
+        .txt-des {
+          color: #666;
+          font-size: .29rem;
+        }
+        .txt-price {
+          color: #F7A173;
+          font-size: .4rem;
+        }
+        .txt-num {
+          float: right;
+          color: #999;
+          font-size: .29rem;
+        }
+      }
+    }
+    .g-chat-box {
+      margin: .4rem auto 0 auto;
+      position: relative;
+      width: 9.2rem;
+      //border: 1px solid;
+      .g-left-headpic {
+        @include headpic(1.33rem);
+        text-align: center;
+
+        .txt-nickname {
+          text-align: center;
+          font-size: .37rem;
+          word-wrap: break-word;
+          word-break: normal;
+          display:block;
+          white-space:nowrap;
+          overflow:hidden;
+          text-overflow:ellipsis;
+        }
+      }
+      .g-right-chatContent {
+        display: inline-block;
+        float: right;
+
+        //border: 1px solid blue;
+        background-color: #fff;
+        font-size: .37rem;
+        width: 6.72rem;
+        /* word-wrap: break-word; */
+        padding: .29rem .37rem;
+        border-radius: 0.13rem
+      }
+      &:after {
+        content: '';
+        display: inline-block;
+        position: absolute;
+        left: 1.4rem;
+        top: .2rem;
+        border-top: .6rem solid transparent;
+        border-bottom: .1rem solid transparent;
+        border-left: .1rem solid transparent;
+        border-right: .4rem solid #fff;
+      }
+
+    }
+    .g-progressbar-box {
+      .g-cursor-box {
+        width: 7.6rem;
+        margin: 0 auto;
+        height: .88rem;
+        line-height: .88rem;
+        margin-bottom: .3rem;
+        .g-cursor {
+          //position: relative;
+          width: 3.2rem;
+          //height: 0.88rem;
+          text-align: center;
+          vertical-align: middle;
+          //line-height: .88rem;
+          border-radius: 0.11rem;
+          font-size: 0.35rem;
+          color: #fff;
+          background-color: #5BE1B6;
+          margin-top: .53rem;
+          margin-left: -15%;
+          //left: -9%;
+          //top: -0.3rem;
+
+          .txt-price {
+            color: #F7A173;
+            font-size: .48rem;
+          }
+          .u-arrow {
+            position: relative;
+            &:after {
+              content: '';
+              display: inline-block;
+              position: absolute;
+              top: .55rem;
+              left: calc(50% - .35rem);
+              border-right: .35rem solid transparent;
+              border-left: .35rem solid transparent;
+              border-top: .3rem solid #5BE1B6;
+              border-bottom: .2rem solid transparent;
+            }
+          }
+
+        }
+      }
+
+      .g-bar{
+        margin: 0 auto;
+        width: 7.6rem;
+        height: .4rem;
+        overflow: hidden;
+        border-radius: 0.21rem ;
+        background-color: #97EBD0;
+        &:after {
+          content: '';
+          background-color: #F77D73;
+          width: 11%;
+          height: 100%;
+          display: inline-block;
+        }
+      }
+      .g-bar-txt {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 7.6rem;
+        margin: .27rem auto 0 auto;
+        font-size: .37rem;
+      }
+      .g-btn {
+        margin: .4rem auto 0 auto;
+        width: 9.2rem;
+        height: 1.33rem;
+        line-height: 1.33rem;
+        background-color: #FAC23B;
+        border-radius: 0.13rem ;
+        text-align: center;
+        .txt-btn {
+          color: #fff;
+          font-size: 0.53rem;
+        }
+        .u-time {
+          font-size: 0.35rem;
+          color: #000;
+          line-height: normal;
+        }
+      }
+
+    }
+    .g-friends-lists {
+      margin: 1.15rem auto 0 auto;
+      width: 9.2rem;
+      background-color: #ABEFD9;
+      border-radius: 0.13rem ;
+      .lists-title {
+        display: block;
+        height: 1.23rem;
+        line-height: 1.24rem;
+        font-size: 0.48rem;
+        color: #333333;
+        text-align: center;
+      }
+      .g-left-headpic {
+        @include headpic(1.6rem);
+
+      }
+      div {
+        display: inline-block;
+        float: left;
+      }
+      .lists-box {
+        overflow: hidden;
+        margin: 0 auto;
+        width:8.67rem;
+        border-top: 1px solid #66CF97;
+        .list-item-box {
+          display: flex;
+          align-items: center;
+          overflow: hidden;
+          padding: .27rem;
+          .g-left-headpic {
+          }
+          .g-m-des {
+            margin-left: .27rem;
+            width: 57%;
+            .txt-nickname {
+              font-size: .4rem;
+            }
+            .txt-content {
+              font-size: 0.35rem;
+            }
+            span {
+              display: block;
+            }
+          }
+          .g-right-price {
+            .txt-price {
+              color: #F7A173;
+              font-size: 0.53rem;
+            }
+          }
+        }
+
+      }
+
+    }
+  }
+
+}

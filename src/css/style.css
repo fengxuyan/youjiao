@@ -1,0 +1,212 @@
+.g-bargin-container {
+  background-color: #E5F8F2; }
+  .g-bargin-container .g-brief-box .s-rules {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: .4rem;
+    height: 1rem;
+    text-align: right; }
+    .g-bargin-container .g-brief-box .s-rules .icon-rules {
+      display: inline-block;
+      padding-right: .1rem;
+      width: .32rem;
+      height: .32rem; }
+      .g-bargin-container .g-brief-box .s-rules .icon-rules:after {
+        content: '';
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+        background-image: url("../images/rules.png");
+        background-size: 100% 100%;
+        background-position: center center; }
+  .g-bargin-container .g-brief-box .g-brief-introduce {
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 0 .29rem;
+    margin: 0 auto;
+    width: 9.2rem;
+    height: 2.53rem;
+    background-color: #fff;
+    border: 0.04rem solid #5CC989;
+    border-radius: 0.13rem; }
+    .g-bargin-container .g-brief-box .g-brief-introduce .g-introduce-left {
+      display: inline-block;
+      float: left;
+      width: 2.67rem;
+      height: 2rem; }
+      .g-bargin-container .g-brief-box .g-brief-introduce .g-introduce-left img {
+        height: 100%;
+        width: 100%; }
+    .g-bargin-container .g-brief-box .g-brief-introduce .g-introduce-right {
+      display: inline-block;
+      padding-left: .27rem;
+      width: 65%; }
+      .g-bargin-container .g-brief-box .g-brief-introduce .g-introduce-right .g-price-num {
+        margin-top: .29rem; }
+      .g-bargin-container .g-brief-box .g-brief-introduce .g-introduce-right .txt-tilte {
+        color: #333;
+        font-size: .4rem; }
+      .g-bargin-container .g-brief-box .g-brief-introduce .g-introduce-right .txt-des {
+        color: #666;
+        font-size: .29rem; }
+      .g-bargin-container .g-brief-box .g-brief-introduce .g-introduce-right .txt-price {
+        color: #F7A173;
+        font-size: .4rem; }
+      .g-bargin-container .g-brief-box .g-brief-introduce .g-introduce-right .txt-num {
+        float: right;
+        color: #999;
+        font-size: .29rem; }
+  .g-bargin-container .g-brief-box .g-chat-box {
+    margin: .4rem auto 0 auto;
+    position: relative;
+    width: 9.2rem; }
+    .g-bargin-container .g-brief-box .g-chat-box .g-left-headpic {
+      display: inline-block;
+      width: 1.33rem;
+      text-align: center; }
+      .g-bargin-container .g-brief-box .g-chat-box .g-left-headpic img {
+        width: 1.33rem;
+        height: 1.33rem;
+        border-radius: 50%; }
+      .g-bargin-container .g-brief-box .g-chat-box .g-left-headpic .txt-nickname {
+        text-align: center;
+        font-size: .37rem;
+        word-wrap: break-word;
+        word-break: normal;
+        display: block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis; }
+    .g-bargin-container .g-brief-box .g-chat-box .g-right-chatContent {
+      display: inline-block;
+      float: right;
+      background-color: #fff;
+      font-size: .37rem;
+      width: 6.72rem;
+      /* word-wrap: break-word; */
+      padding: .29rem .37rem;
+      border-radius: 0.13rem; }
+    .g-bargin-container .g-brief-box .g-chat-box:after {
+      content: '';
+      display: inline-block;
+      position: absolute;
+      left: 1.4rem;
+      top: .2rem;
+      border-top: .6rem solid transparent;
+      border-bottom: .1rem solid transparent;
+      border-left: .1rem solid transparent;
+      border-right: .4rem solid #fff; }
+  .g-bargin-container .g-brief-box .g-progressbar-box .g-cursor-box {
+    width: 7.6rem;
+    margin: 0 auto;
+    height: .88rem;
+    line-height: .88rem;
+    margin-bottom: .3rem; }
+    .g-bargin-container .g-brief-box .g-progressbar-box .g-cursor-box .g-cursor {
+      width: 3.2rem;
+      text-align: center;
+      vertical-align: middle;
+      border-radius: 0.11rem;
+      font-size: 0.35rem;
+      color: #fff;
+      background-color: #5BE1B6;
+      margin-top: .53rem;
+      margin-left: -15%; }
+      .g-bargin-container .g-brief-box .g-progressbar-box .g-cursor-box .g-cursor .txt-price {
+        color: #F7A173;
+        font-size: .48rem; }
+      .g-bargin-container .g-brief-box .g-progressbar-box .g-cursor-box .g-cursor .u-arrow {
+        position: relative; }
+        .g-bargin-container .g-brief-box .g-progressbar-box .g-cursor-box .g-cursor .u-arrow:after {
+          content: '';
+          display: inline-block;
+          position: absolute;
+          top: .55rem;
+          left: calc(50% - .35rem);
+          border-right: .35rem solid transparent;
+          border-left: .35rem solid transparent;
+          border-top: .3rem solid #5BE1B6;
+          border-bottom: .2rem solid transparent; }
+  .g-bargin-container .g-brief-box .g-progressbar-box .g-bar {
+    margin: 0 auto;
+    width: 7.6rem;
+    height: .4rem;
+    overflow: hidden;
+    border-radius: 0.21rem;
+    background-color: #97EBD0; }
+    .g-bargin-container .g-brief-box .g-progressbar-box .g-bar:after {
+      content: '';
+      background-color: #F77D73;
+      width: 11%;
+      height: 100%;
+      display: inline-block; }
+  .g-bargin-container .g-brief-box .g-progressbar-box .g-bar-txt {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 7.6rem;
+    margin: .27rem auto 0 auto;
+    font-size: .37rem; }
+  .g-bargin-container .g-brief-box .g-progressbar-box .g-btn {
+    margin: .4rem auto 0 auto;
+    width: 9.2rem;
+    height: 1.33rem;
+    line-height: 1.33rem;
+    background-color: #FAC23B;
+    border-radius: 0.13rem;
+    text-align: center; }
+    .g-bargin-container .g-brief-box .g-progressbar-box .g-btn .txt-btn {
+      color: #fff;
+      font-size: 0.53rem; }
+    .g-bargin-container .g-brief-box .g-progressbar-box .g-btn .u-time {
+      font-size: 0.35rem;
+      color: #000;
+      line-height: normal; }
+  .g-bargin-container .g-brief-box .g-friends-lists {
+    margin: 1.15rem auto 0 auto;
+    width: 9.2rem;
+    background-color: #ABEFD9;
+    border-radius: 0.13rem; }
+    .g-bargin-container .g-brief-box .g-friends-lists .lists-title {
+      display: block;
+      height: 1.23rem;
+      line-height: 1.24rem;
+      font-size: 0.48rem;
+      color: #333333;
+      text-align: center; }
+    .g-bargin-container .g-brief-box .g-friends-lists .g-left-headpic {
+      display: inline-block;
+      width: 1.6rem; }
+      .g-bargin-container .g-brief-box .g-friends-lists .g-left-headpic img {
+        width: 1.6rem;
+        height: 1.6rem;
+        border-radius: 50%; }
+    .g-bargin-container .g-brief-box .g-friends-lists div {
+      display: inline-block;
+      float: left; }
+    .g-bargin-container .g-brief-box .g-friends-lists .lists-box {
+      overflow: hidden;
+      margin: 0 auto;
+      width: 8.67rem;
+      border-top: 1px solid #66CF97; }
+      .g-bargin-container .g-brief-box .g-friends-lists .lists-box .list-item-box {
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+        padding: .27rem; }
+        .g-bargin-container .g-brief-box .g-friends-lists .lists-box .list-item-box .g-m-des {
+          margin-left: .27rem;
+          width: 57%; }
+          .g-bargin-container .g-brief-box .g-friends-lists .lists-box .list-item-box .g-m-des .txt-nickname {
+            font-size: .4rem; }
+          .g-bargin-container .g-brief-box .g-friends-lists .lists-box .list-item-box .g-m-des .txt-content {
+            font-size: 0.35rem; }
+          .g-bargin-container .g-brief-box .g-friends-lists .lists-box .list-item-box .g-m-des span {
+            display: block; }
+        .g-bargin-container .g-brief-box .g-friends-lists .lists-box .list-item-box .g-right-price .txt-price {
+          color: #F7A173;
+          font-size: 0.53rem; }
+
+/*# sourceMappingURL=style.css.map */

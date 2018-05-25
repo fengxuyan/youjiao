@@ -1,0 +1,16 @@
+*{margin:0;padding:0}
+
+li{list-style:none}
+
+img{vertical-align:top;border:none}
+
+/* 重置文本格式元素 */
+a { text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+body,
+button, input, select, textarea {
+    /* for ie */
+    /*font: 12px/1 Tahoma, Helvetica, Arial, "宋体", sans-serif;*/
+    font-family: "PingFangSC" , sans-serif; /* 用 ascii 字符表示，使得在任何编码下都无问题 */
+}
