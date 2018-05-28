@@ -10,6 +10,7 @@
 .g-bargin-container {
   background-color: #E5F8F2;
   .g-brief-box {
+    padding-bottom: 1.16rem;
     .s-rules {
       display: flex;
       align-items: center;
@@ -126,46 +127,62 @@
 
     }
     .g-progressbar-box {
+      margin-top: .53rem;
       .g-cursor-box {
+        position: relative;
         width: 7.6rem;
         margin: 0 auto;
         height: .88rem;
         line-height: .88rem;
         margin-bottom: .3rem;
-        .g-cursor {
-          //position: relative;
-          width: 3.2rem;
-          //height: 0.88rem;
-          text-align: center;
-          vertical-align: middle;
-          //line-height: .88rem;
-          border-radius: 0.11rem;
-          font-size: 0.35rem;
-          color: #fff;
-          background-color: #5BE1B6;
-          margin-top: .53rem;
-          margin-left: -15%;
-          //left: -9%;
-          //top: -0.3rem;
+        //border: 1px solid darkgreen;
+        //.g-cursor {
 
-          .txt-price {
-            color: #F7A173;
-            font-size: .48rem;
+        //position: absolute;
+        //position: relative;
+        //width: 3.2rem;
+        //height: 0.88rem;
+        //text-align: center;
+        //vertical-align: middle;
+        ////line-height: .88rem;
+        //border-radius: 0.11rem;
+        //font-size: 0.35rem;
+        //color: #fff;
+        //background-color: #5BE1B6;
+        //margin-top: .53rem;
+        //margin-left: -15%;
+        //left: 0%;
+        //top: -0.3rem;
+
+        //border: 1px solid darkblue;
+
+        .txt-price {
+          color: #F7A173;
+          font-size: .48rem;
+        }
+        .u-arrow {
+
+
+          display: inline-block;
+          background-image: url(../images/back-cursor.png);
+          width: 3rem;
+          height: 1.08rem;
+          line-height: .8rem;
+          background-repeat: no-repeat;
+          background-size: 100% 100%;
+          text-align: center;
+          color: #fff;
+          font-size: .35rem;
+          background-position: top center;
+
+
+          margin-left: -15%;
+          &:before {
+            content: '';
+            //padding: 0 .3rem;
           }
-          .u-arrow {
-            position: relative;
-            &:after {
-              content: '';
-              display: inline-block;
-              position: absolute;
-              top: .55rem;
-              left: calc(50% - .35rem);
-              border-right: .35rem solid transparent;
-              border-left: .35rem solid transparent;
-              border-top: .3rem solid #5BE1B6;
-              border-bottom: .2rem solid transparent;
-            }
-          }
+
+          //}
 
         }
       }
@@ -177,12 +194,22 @@
         overflow: hidden;
         border-radius: 0.21rem ;
         background-color: #97EBD0;
-        &:after {
-          content: '';
+        .g-bar-num {
           background-color: #F77D73;
-          width: 11%;
+          width: 5%;
           height: 100%;
           display: inline-block;
+          //&:after {
+          //  content: '';
+          //  display: inline-block;
+          //  position: absolute;
+          //  top: .55rem;
+          //  left: calc(50% - .35rem);
+          //  border-right: .35rem solid transparent;
+          //  border-left: .35rem solid transparent;
+          //  border-top: .3rem solid #5BE1B6;
+          //  border-bottom: .2rem solid transparent;
+          //}
         }
       }
       .g-bar-txt {
@@ -271,5 +298,23 @@
 
     }
   }
+
+}
+body {
+  position: relative;
+}
+
+.mask {
+  display: none;
+  position: absolute;
+  z-index: 1000;
+  width: 100%;
+  height: 100%;
+  background: #333;
+  opacity: .6;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 
 }
