@@ -2,13 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="153afd5c-1a7d-4a13-89f0-3e6db0879839" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/images/back-cursor.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bargin.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/css/style.css" afterPath="$PROJECT_DIR$/src/css/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/css/style.css.map" afterPath="$PROJECT_DIR$/src/css/style.css.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/css/style.scss" afterPath="$PROJECT_DIR$/src/css/style.scss" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/bargin-success.html" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/pages/a.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/pages/example-1.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/pages/friendsCircle.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/pages/friendsCirclebak.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/pages/mine-wave.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/pages/pictures-demo.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/pages/swipeout.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/pages/test-scroll.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/pages/test-scroll2.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/pages/wave.html" afterPath="" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -38,8 +41,8 @@
       <file leaf-file-name="bargin-success.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/bargin-success.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="107" column="54" lean-forward="true" selection-start-line="107" selection-start-column="54" selection-end-line="107" selection-end-column="54" />
+            <state relative-caret-position="273">
+              <caret line="93" column="8" lean-forward="true" selection-start-line="93" selection-start-column="8" selection-end-line="93" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -173,18 +176,17 @@
       <updated>1527150675978</updated>
       <workItem from="1527150677079" duration="5479000" />
       <workItem from="1527210039532" duration="25062000" />
-      <workItem from="1527469196634" duration="13261000" />
+      <workItem from="1527469196634" duration="13441000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="43802000" />
+    <option name="totallyTimeSpent" value="43982000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="283" y="139" width="1940" height="997" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.120925345" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.120925345" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -323,8 +325,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/bargin-success.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="107" column="54" lean-forward="true" selection-start-line="107" selection-start-column="54" selection-end-line="107" selection-end-column="54" />
+        <state relative-caret-position="273">
+          <caret line="93" column="8" lean-forward="true" selection-start-line="93" selection-start-column="8" selection-end-line="93" selection-end-column="8" />
           <folding />
         </state>
       </provider>
