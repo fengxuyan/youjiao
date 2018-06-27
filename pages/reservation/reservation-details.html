@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>预约详情</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="description" content="Write an awesome description for your new site here">
+    <link rel="stylesheet" href="../../src/css/lib/default.css">
+    <link rel="stylesheet" href="../../src/css/native-style.css">
+
+    <link rel="stylesheet" href="../../src/css/lib/weui.min.css">
+    <link rel="stylesheet" href="../../src/css/lib/jquery-weui.min.css">
+</head>
+
+<body ontouchstart class="reservation-details">
+
+<div class="g-lists-container">
+    <ul class="lists-box">
+
+        <li class="input-left">宝宝信息：<input  class="baby-info" type="text" value="" placeholder="请选择" readonly></li>
+        <li>家长姓名：<input id="name" type="text" placeholder="请输入家长姓名"></li>
+        <li >联系方式：<input id="phone" type="tel" placeholder="请输入联系电话"></li>
+        <li class="input-left">预约课程：<input id="class" type="text" value="" placeholder="请选择" readonly></li>
+        <li class="input-left">预约时间：<input  id="time" type="text" value="" placeholder="请选择" readonly></li>
+        <li class="note-box">备注：
+            <textarea class="g-txt-area" rows="5" cols="45" placeholder="请填写内容"></textarea>
+        </li>
+
+    </ul>
+    <div class="submit-btn"><span>提交</span></div>
+
+</div>
+
+<div class="reservation-mask"></div>
+<div class="popMask reservation-class">
+    <p class="popMask-title">请选择预约课程</p>
+    <ul class="popMask-item-box">
+        <li>多元智能课1</li>
+        <li>多元智能课2</li>
+        <li>多元jy66智能课</li>
+        <li>多元智ui能课</li>
+        <li>多元智能loi课</li>
+        <li>多元智能54j6课</li>
+        <li>多元智能a3课</li>
+        <li>多元et4智能课</li>
+        <li>多元智y5s能课</li>
+        <li>多元智能课szty</li>
+        <li>多元智65能课</li>
+        <li>多元智能课56</li>
+        <li>多元智能课89</li>
+        <li>多元智能课10</li>
+        <li>多元智能课11</li>
+        <li>多元智能课12</li>
+    </ul>
+</div>
+<div class="popMask reservation-time">
+    <p class="popMask-title">请选择预约时间</p>
+    <div class="popMask-item-box">
+        <div class="left-day"></div>
+        <div class="right-time">
+            <li>10:00</li>
+            <li>10:30</li>
+            <li>11:00</li>
+            <li>11:30</li>
+            <li>12:00</li>
+        </div>
+
+    </div>
+</div>
+
+<script src="../../src/js/lib/jquery-2.1.4.js"></script>
+<script src="../../src/js/lib/rem.js"></script>
+<script src="../../src/js/lib/fastclick.js"></script>
+<script src="../../src/js/lib/jquery-weui.js"></script>
+
+
+<script>
+    $(function () {
+        FastClick.attach(document.body);
+    });
+    $('html').css('min-height', '100%')
+</script>
+
+<script>
+    selectParms('class');
+    selectParms('time');
+
+
+    /*判断是否有宝宝信息*/
+    var babayInfo = JSON.parse(localStorage.getItem('selectedBabyInfo'));
+    if (babayInfo != null) {
+        $('.baby-info').text('');
+        $('.baby-info').addClass('babyInfo_pic').css('background-image', 'url(' + babayInfo.babyImgUrl + ')');
+    }
+    $('.baby-info').on('click', function (e) {
+        location.href = 'babyInfo.html';
+    })
+
+
+    /*预约时间--日期列表选项*/
+    dayNames = ["周日", "周一", "周二", "周三", "周四", "周五", "周六"];
+    var result = [];
+    var now = new Date();
+    Date.prototype.getMonthDay = function () {
+        var formatedMonth = ("0" + (this.getMonth() + 1)).slice(-2);
+        var formatedDate = ("0" + (this.getDate())).slice(-2);
+        return formatedMonth + '-' + formatedDate;
+    }
+    result.push("今天 " + now.getMonthDay());
+
+    for (var i = 0; i < 7; i++) {
+        now.setDate(now.getDate() + 1);
+        result.push(dayNames[now.getDay()] + ' ' + now.getMonthDay())
+        $('.left-day').append('<li>' + result[i] + '</li>');
+
+    }
+    $('.left-day li:first-child').addClass('clicked-leftDay');
+
+    /*下拉选择*/
+    function selectParms(idName) {
+        $('#' + idName).on('click', function (e) {
+            $('.popMask.reservation-' + idName).toggle();
+            $('.reservation-mask').toggle();
+            bindListener(idName);
+        })
+    }
+
+    function bindListener(idName) {
+        $('.popMask-item-box li').unbind('click').on('click', function (e) {
+            var selectedItem = e.target.innerHTML;
+            $(this).siblings().removeClass('clicked')
+            $(this).addClass('clicked');
+            $('.popMask.reservation-' + idName).toggle();
+            $('.reservation-mask').toggle();
+            $('#class').val(selectedItem);
+        })
+        $('.popMask-item-box .right-time li').unbind('click').on('click', function (e) {
+            var selectedItem = e.target.innerHTML;
+            $(this).siblings().removeClass('clicked')
+            $(this).addClass('clicked');
+            $('.popMask.reservation-' + idName).toggle();
+            $('.reservation-mask').toggle();
+            $('#time').val($('.clicked-leftDay').text() + ' ' + selectedItem);
+
+        })
+        $('.popMask-item-box .left-day li').unbind('click').on('click', function (e) {
+            $(this).addClass('clicked-leftDay');
+            $(this).siblings().removeClass('clicked-leftDay');
+        })
+
+    }
+
+    /*手机号验证*/
+    function checkMobile(phone) {
+        var re = /^1\d{10}$/;
+        return re.test(phone)
+    }
+
+    /*表单验证*/
+    function formValidation() {
+        var parentsName = $('#name').val();
+        var phone = $('#phone').val();
+        var className = $('#class').val();
+        var classTime = $('#time').val();
+
+        if (null == babayInfo || '' == parentsName || '' == phone || '' == className || '' == classTime) {
+            return false;
+        } else{
+            return true;
+        }
+    }
+
+    /*提交按钮*/
+    $('.submit-btn').on('click', function () {
+        if (formValidation()) {
+            var data = {
+                "parentsName": $('#name').val(),
+                "phone": $('#phone').val(),
+                "className": $('#class').val(),
+                "classTime": $('#time').val()
+            }
+            $.ajax({
+                type: 'POST',
+                url: "",
+                data: data,
+                dataType: "json",
+                success: function (data) {
+                    /*预约成功弹出框*/
+                },
+                error: function () {
+                    console.log(data);
+                }
+            })
+
+            /*提交成功弹出框*/
+            $.modal({
+                title: "提交成功",
+                text: "我们的客服会及时与您联系，确认信息",
+                result_icon: "url('../../src/images/success.svg')",
+                buttons: [
+                    {
+                        text: "返回", onClick: function () {
+                    }
+                    },
+                    {
+                        text: "查看详情", onClick: function () {
+                        location.href = 'reservation-result-details.html?'+'orderid='+'123';
+                    }
+                    },
+//                  { text: "取消", className: "default"},
+                ]
+            });
+        } else {
+            /*提交失败弹出框*/
+            $.modal({
+                title: "提交失败",
+                text: "请将信息填写完整",
+                result_icon: "url('../../src/images/fail.svg')",
+                buttons: [
+                    {
+                        text: "返回", onClick: function () {
+                    }
+                    },
+//                  { text: "查看详情", onClick: function(){ location.href='www.baidu.com'; },className: "default" },
+                    {
+                        text: "重新填写", className: "default"
+                    }
+                ]
+            });
+        }
+    })
+
+
+</script>
+</body>
+</html>

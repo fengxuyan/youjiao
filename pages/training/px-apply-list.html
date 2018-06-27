@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta charset="UTF-8">
+    <title>培训申请列表</title>
+    <link rel="stylesheet" href="../../src/css/lib/default.css">
+    <link rel="stylesheet" href="train_css/train.css">
+
+    <link rel="stylesheet" href="../../src/css/lib/weui.min.css">
+    <link rel="stylesheet" href="../../src/css/lib/jquery-weui.min.css">
+
+
+</head>
+<body ontouchstart class="pxApplyList-container">
+<div class="datePicker-box">
+    <div class="left-box"><span class="left-year"></span><span class="left-month"></span></div>
+    <div class="m-box">
+        <!--<input id="this-date" type="text" style="display: block" onchange="setDate(this)">-->
+        <span><span class="this-year"></span>年<span class="this-month"></span>月</span>
+    </div>
+    <div class="right-box"><span class="right-month"></span><span class="right-year"></span></div>
+</div>
+
+<ul class="list-box">
+    <li class="item-box">
+        <p class="g-title"><span class="title-txt">南京米其儿早教中心</span><span class="title-date">06-12 11:42</span></p>
+        <p><span class="left-name">培训时间:</span><span class="right-des">2018-06-28</span></p>
+        <p><span class="left-name">培训对接人:</span><span class="right-des">啦啦啦</span><i class="back-icon"></i></p>
+        <p><span class="left-name">联系方式:</span><span class="right-des">186505223792</span></p>
+    </li>
+    <li class="item-box">
+        <p class="g-title"><span class="title-txt">南京米其儿早教中心</span><span class="title-date">06-12 11:42</span></p>
+        <p><span class="left-name">培训时间:</span><span class="right-des">2018-06-28</span></p>
+        <p><span class="left-name">培训对接人:</span><span class="right-des">啦啦啦</span><i class="back-icon"></i></p>
+        <p><span class="left-name">联系方式:</span><span class="right-des">186505223792</span></p>
+    </li>
+    <li class="item-box">
+        <p class="g-title"><span class="title-txt">南京米其儿早教中心</span><span class="title-date">06-12 11:42</span></p>
+        <p><span class="left-name">培训时间:</span><span class="right-des">2018-06-28</span></p>
+        <p><span class="left-name">培训对接人:</span><span class="right-des">啦啦啦</span><i class="back-icon"></i></p>
+        <p><span class="left-name">联系方式:</span><span class="right-des">186505223792</span></p>
+    </li>
+    <li class="item-box">
+        <p class="g-title"><span class="title-txt">南京米其儿早教中心</span><span class="title-date">06-12 11:42</span></p>
+        <p><span class="left-name">培训时间:</span><span class="right-des">2018-06-28</span></p>
+        <p><span class="left-name">培训对接人:</span><span class="right-des">啦啦啦</span><i class="back-icon"></i></p>
+        <p><span class="left-name">联系方式:</span><span class="right-des">186505223792</span></p>
+    </li>
+    <li class="item-box">
+        <p class="g-title"><span class="title-txt">南京米其儿早教中心</span><span class="title-date">06-12 11:42</span></p>
+        <p><span class="left-name">培训时间:</span><span class="right-des">2018-06-28</span></p>
+        <p><span class="left-name">培训对接人:</span><span class="right-des">啦啦啦</span><i class="back-icon"></i></p>
+        <p><span class="left-name">联系方式:</span><span class="right-des">186505223792</span></p>
+    </li>
+    <li class="item-box">
+        <p class="g-title"><span class="title-txt">南京米其儿早教中心</span><span class="title-date">06-12 11:42</span></p>
+        <p><span class="left-name">培训时间:</span><span class="right-des">2018-06-28</span></p>
+        <p><span class="left-name">培训对接人:</span><span class="right-des">啦啦啦</span><i class="back-icon"></i></p>
+        <p><span class="left-name">联系方式:</span><span class="right-des">186505223792</span></p>
+    </li>
+    <li class="item-box">
+        <p class="g-title"><span class="title-txt">南京米其儿早教中心</span><span class="title-date">06-12 11:42</span></p>
+        <p><span class="left-name">培训时间:</span><span class="right-des">2018-06-28</span></p>
+        <p><span class="left-name">培训对接人:</span><span class="right-des">啦啦啦</span><i class="back-icon"></i></p>
+        <p><span class="left-name">联系方式:</span><span class="right-des">186505223792</span></p>
+    </li>
+
+
+</ul>
+
+<div class="add-box">
+    <div class="add-btn"><i class="add-icon"></i><span>培训申请</span></div>
+</div>
+<script src="../../src/js/lib/jquery-2.1.4.js"></script>
+<script src="../../src/js/lib/jquery-weui.js"></script>
+
+<script src="../../src/js/lib/rem.js"></script>
+<script src="../../src/js/lib/fastclick.js"></script>
+
+
+<script>
+    $(function () {
+        FastClick.attach(document.body);
+    });
+
+    /*获取当前年 月*/
+    var date = new Date;
+    var year = date.getFullYear();
+    var month = date.getMonth() + 1;
+
+    $('.this-month').text(month);
+    $('.this-year').text(year)
+
+    $('.left-year').on('click', function (e) {
+        var year = $('.this-year').text();
+        year--;
+        $('.this-year').text(year)
+        console.log($('.this-year').text()+'/'+$('.this-month').text());
+
+    })
+    $('.left-month').on('click', function (e) {
+        var month = $('.this-month').text();
+        if(month>1){
+            month--;
+            $('.this-month').text(month)
+        }
+
+    })
+    $('.right-year').on('click', function (e) {
+        var year = $('.this-year').text();
+        year++;
+        $('.this-year').text(year)
+    })
+    $('.right-month').on('click', function (e) {
+        var month = $('.this-month').text();
+        month++;
+        $('.this-month').text(month)
+    })
+
+
+    /*点击列表项*/
+    $('.item-box').on('click', function (e) {
+        location.href = "px-apply-details.html"
+    })
+
+
+    /*点击添加申请*/
+    $('.add-box').on('click', function (e) {
+        location.href = "px-apply.html"
+    })
+
+
+</script>
+</body>
+</html>

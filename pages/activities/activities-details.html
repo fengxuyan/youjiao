@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>活动详情</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="description" content="Write an awesome description for your new site here">
+    <link rel="stylesheet" href="../../src/css/lib/weui.min.css">
+    <link rel="stylesheet" href="../../src/css/lib/jquery-weui.min.css">
+    <link rel="stylesheet" href="../../src/css/lib/default.css">
+    <link rel="stylesheet" href="../../src/css/native-style.css">
+</head>
+
+<body ontouchstart class="activities-details">
+
+<div class="g-reservationDetails-container">
+
+    <div class="details-box">
+        <div class="test-img"></div>
+        <ul class="details-lists-box">
+            <li class="g-title">
+                <p class="title-name">米其儿早教中心万达广场店</p>
+                <span>浏览<i class="skimOver">60</i>次</span><span>收藏<i class="collection">60</i>次</span>
+                <p class="price-txt">￥20.00</p>
+            </li>
+            <li class="g-time"><i></i><span>活动时间：2018.05.20-2018.06-01</span></li>
+            <li class="g-location"><i></i><span>南京市江宁区万达广场B座</span><i></i></li>
+            <li class="g-person"><i></i><span>已报名人数100人/限报名人数500人</span></li>
+        </ul>
+    </div>
+
+    <div class="initiator-box">
+        <p class="initiator-name">活动发起方</p>
+        <div class="box-container">
+            <div class="left-img">
+                <img src="../../src/images/company-logo.svg">
+            </div>
+            <div class="right-des">
+                <p class="des-title">霍格优教</p>
+                <p class="des-content">霍格优教简介霍格优教简介霍格优教简介霍格优教
+                    霍格优教简介霍格优教简介简介霍格优教简介霍格优教简介霍格霍格优教简介霍格优教简介霍格教简介霍格霍格优教简介霍格优教简</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="activities-des-box">
+        <p>活动介绍</p>
+        <p>活动介绍</p>
+        <p>活动介绍</p>
+        <p>活动介绍</p>
+        <p>活动介绍</p>
+        <p>活动介绍</p>
+        <p>活动介绍</p>
+    </div>
+</div>
+<footer class="footer-box">
+    <div class="left-icon">
+        <div class="icon-container"><span class="collection-icon"></span><span>收藏</span></div>
+    </div>
+    <div class="right-icon"><span>立即报名</span></div>
+</footer>
+<div class="mask-container"></div>
+<div class="mask-info">
+    <p>填写信息</p>
+    <ul class="list-box">
+        <li><input class="list-input" id="name" type="text" placeholder="请输入姓名"></li>
+        <li><input class="list-input" id="phone" type="tel" placeholder="请输入联系方式"></li>
+    </ul>
+    <div class="btn-box">
+        <div class="left-cancel">取消</div>
+        <div class="right-sure">提交</div>
+    </div>
+</div>
+<script src="../../src/js/lib/jquery-2.1.4.js"></script>
+
+<script src="../../src/js/lib/rem.js"></script>
+<script src="../../src/js/lib/fastclick.js"></script>
+<script src="../../src/js/lib/jquery-weui.js"></script>
+
+<script>
+    $(function () {
+        FastClick.attach(document.body);
+    });
+</script>
+
+<script>
+    /*设置屏幕遮罩层*/
+    $('.mask-container').css('height', $('body').height())
+
+    /*检查表单是否为空*/
+    function checkInfo() {
+        var name = $("#name").val();
+        var phone = $("#phone").val();
+
+        if ('' == name || '' == phone) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    $('.right-icon').on('click', function () {
+        $('.mask-container').toggle()
+        $('.mask-info').toggle()
+    })
+    $('.left-cancel').on('click', function () {
+        $('.mask-container').toggle()
+        $('.mask-info').toggle()
+    })
+
+    $('.left-icon').on('click', function () {
+        $('.icon-container .collection-icon').addClass('collected-icon');
+    })
+
+
+    $('.right-sure').on('click', function () {
+        $('.mask-container').toggle()
+        $('.mask-info').toggle()
+
+        if (checkInfo()) {
+            location.href = '#';
+        } else {
+            $.modal({
+                title: "提交失败",
+                text: "请将信息填写完整",
+                result_icon: "url('../../src/images/fail.svg')",
+                buttons: [
+                    {
+                        text: "返回", onClick: function () {
+                    }
+                    },
+                    {
+                        text: "重新填写", className: "default", onClick: function () {
+                        $('.mask-container').show()
+                        $('.mask-info').show()
+                    }
+                    }
+                ]
+            });
+        }
+    })
+</script>
+</body>
+</html>

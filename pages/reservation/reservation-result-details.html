@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>预约详情</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="description" content="Write an awesome description for your new site here">
+    <link rel="stylesheet" href="../../src/css/lib/default.css">
+    <link rel="stylesheet" href="../../src/css/native-style.css">
+</head>
+
+<body ontouchstart class="organization-details">
+
+<div class="g-reservationDetails-container">
+
+    <div class="details-box">
+        <div class="test-img"></div>
+        <!--<img class="g-details-img" src="../../src/images/tester.jpg">-->
+        <ul class="details-lists-box">
+            <li class="g-title">
+                <p class="title-name">米其儿早教中心万达广场店</p>
+            </li>
+            <li class="g-location"><i></i><span>南京市江宁区万达广场B座</span><i></i></li>
+            <li class="g-phone"><i></i><a href="tel:10086"><span>10086</span><i></i></a></li>
+        </ul>
+
+    </div>
+
+
+    <ul class="g-reservationOrder-details">
+
+        <li>预约信息</li>
+        <li class="get-babyInfo">
+            <div class="info-title">宝宝信息：
+                <div class="info-img-container">
+                    <!--超出7个头像隐藏-->
+                    <img src="../../src/images/test.png">
+                    <img src="../../src/images/test.png">
+                    <img src="../../src/images/test.png">
+                    <img src="../../src/images/test.png">
+                    <img src="../../src/images/test.png">
+                    <img src="../../src/images/test.png">
+                    <img src="../../src/images/test.png">
+                    <i></i>
+                </div>
+            </div>
+            <div class="dropDown-list">
+                <span class="info-box">姓名：<span>米小宝</span></span><span class="info-box">性别：<span>女</span></span><span
+                    class="info-box">年龄：<span>1</span>岁</span>
+                <span class="info-box">姓名：<span>米小宝</span></span><span class="info-box">性别：<span>女</span></span><span
+                    class="info-box">年龄：<span>1</span>岁</span>
+                <span class="info-box">姓名：<span>米小宝</span></span><span class="info-box">性别：<span>女</span></span><span
+                    class="info-box">年龄：<span>1</span>岁</span>
+                <span class="info-box">姓名：<span>米小宝</span></span><span class="info-box">性别：<span>女</span></span><span
+                    class="info-box">年龄：<span>1</span>岁</span>
+
+            </div>
+        </li>
+        <li>家长姓名：<span>啦啦啦</span></li>
+        <li>联系方式：<span>18765434579</span></li>
+        <li>预约课程：<span>多元智能课</span></li>
+        <li>预约时间：<span>今天 05月15日 18:00</span></li>
+        <li>备注：<p>啦啦啦啦啦啦啦啦啦啦</p></li>
+
+    </ul>
+
+</div>
+
+<script src="../../src/js/lib/jquery-2.1.4.js"></script>
+
+<script src="../../src/js/lib/rem.js"></script>
+<script src="../../src/js/lib/fastclick.js"></script>
+
+<script>
+    $(function () {
+        FastClick.attach(document.body);
+    });
+</script>
+
+<script>
+    function serilizeURL(url) {
+        var rs = url.split("?")[1];
+        var arr = rs.split("&");
+        var json = {};
+        for (var i = 0; i < arr.length; i++) {
+            if (arr[i].indexOf("=") != -1) {
+                json[arr[i].split("=")[0]] = arr[i].split("=")[1];
+            }
+            else {
+                json[arr[i]] = "undefined";
+            }
+        }
+        return json;
+    }
+
+    var url = location.href;
+    var reservationid = serilizeURL(url).reservationid;  //
+
+
+    $('.reservationNowBtn').on('click', function (e) {
+        location.href = 'reservation-details.html?'
+    })
+    var json_data = JSON.parse(localStorage.getItem("lat_lng"));
+
+//    var lng = json_data['lng'];
+//    var lat = json_data['lat'];
+//    var endpoint = '花园';
+
+
+    $('.g-location').on('click', function (e) {
+        location.href = 'http://uri.amap.com/navigation?form=' + lng + ',' + lat + ',' + 'startpoint&to=116.3246,31.966577,' + endpoint + '&mode=car&policy=1&src=mypage&coordinate=gaode&callnative=1'
+    })
+
+    $('.get-babyInfo').on('click', function () {
+        $(this).children('.info-title').children('.info-img-container').children('i').toggleClass('arrowDirection');
+        $(this).children('.dropDown-list').toggle();
+    })
+
+
+</script>
+</body>
+</html>

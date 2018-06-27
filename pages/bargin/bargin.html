@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta name="description" content="Write an awesome description for your new site here">
 
-    <link rel="stylesheet" href="src/css/lib/default.css">
-    <link rel="stylesheet" href="src/css/style.css">
+    <link rel="stylesheet" href="../../src/css/lib/default.css">
+    <link rel="stylesheet" href="../../src/css/style.css">
 </head>
 
 <body ontouchstart>
@@ -21,7 +21,7 @@
         <div class="s-rules"><i class="icon-rules"></i><span class="g-txt-rules">活动规则</span></div>
         <div class="g-brief-introduce">
             <div class="g-introduce-left">
-                <img src="src/images/test.png">
+                <img src="../../src/images/test.png">
             </div>
             <ul class="g-introduce-right">
                 <li><span class="txt-tilte">斯坦福妈妈的新闻早教课</span></li>
@@ -32,7 +32,7 @@
         </div>
         <div class="g-chat-box">
             <div class="g-left-headpic">
-                <sapn><img src="src/images/test.png"></sapn>
+                <sapn><img src="../../src/images/test.png"></sapn>
                 <span class="txt-nickname">哈哈哈</span>
             </div>
             <div class="g-right-chatContent"><span>我正在参加该课程的砍价活动，快来帮我砍一刀吧！</span></div>
@@ -53,7 +53,7 @@
             <span class="lists-title">好友助力砍价</span>
             <ul class="lists-box">
                 <li class="list-item-box">
-                    <div class="g-left-headpic"><img src="src/images/test.png"></div>
+                    <div class="g-left-headpic"><img src="../../src/images/test.png"></div>
                     <div class="g-m-des">
                         <span class="txt-nickname">啦啦啦</span>
                         <span class="txt-content">来一起砍价0元拿</span>
@@ -63,7 +63,7 @@
                     </div>
                 </li>
                 <li class="list-item-box">
-                    <div class="g-left-headpic"><img src="src/images/test.png"></div>
+                    <div class="g-left-headpic"><img src="../../src/images/test.png"></div>
                     <div class="g-m-des">
                         <span class="txt-nickname">啦啦啦</span>
                         <span class="txt-content">来一起砍价0元拿</span>
@@ -80,9 +80,9 @@
         style="color:#fff;font-size: .5rem;display: flex;align-items:center;justify-content: center; height: 100%;width: 100%;">这是活动规则</span>
 </div>
 
-<script src="src/js/lib/jquery-2.1.4.js"></script>
-<script src="src/js/lib/rem.js"></script>
-<script src="src/js/lib/fastclick.js"></script>
+<script src="../../src/js/lib/jquery-2.1.4.js"></script>
+<script src="../../src/js/lib/rem.js"></script>
+<script src="../../src/js/lib/fastclick.js"></script>
 
 <script>
     $(function () {
@@ -93,6 +93,7 @@
 
 <script>
 
+    var hasClickBtn = false;
     // 活动规则弹出框
     $('.g-txt-rules').on('click', function (e) {
         $('.mask').css('height', document.body.clientHeight)
@@ -106,14 +107,31 @@
     //  num :5% ~95%
     function cursorPos(num) {
         var cursor_length = parseInt(-20 + num) + '%';
-        $('.g-cursor .u-arrow').animate({'margin-left': cursor_length}, 'slow')
-        $('.g-bar-num').animate({'width': num + '%'}, 'slow');
+
+        if('100' == num){
+            $('.g-cursor .u-arrow').animate({'margin-left': cursor_length},'fast')
+            $('.g-bar-num').animate({'width': num + '%'},'fast');
+            barginSuccess()
+        }else {
+            $('.g-cursor .u-arrow').animate({'margin-left': cursor_length}, 'slow')
+            $('.g-bar-num').animate({'width': num + '%'}, 'slow');
+        }
     }
 
     $('.g-btn').on('click', function () {
-        cursorPos(45);
+        if(false === hasClickBtn){
+            cursorPos(48);
+//            cursorPos(100);
+            hasClickBtn = true;
+        }
     });
+    function barginSuccess() {
+        $('.g-cursor .u-arrow').css('background-size','60% 100%');
+        $('.g-cursor .u-arrow').text("砍价成功");
 
+        $('.txt-btn').text("查看订单信息");
+        $('.u-time').text("恭喜你砍价成功啦!");
+    }
 
     //倒计时
     function countDown(times) {

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>预约</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="description" content="Write an awesome description for your new site here">
+    <link rel="stylesheet" href="../../src/css/lib/default.css">
+    <link rel="stylesheet" href="../../src/css/native-style.css">
+</head>
+
+<body ontouchstart class="reservation">
+<div class="g-reservation-container">
+    <ul class="lists-container">
+        <li class="list-box">
+            <div class="g-box">
+                <p class="img-container">
+                    <!--<img class="img-container" src="../../src/images/goods.jpg">-->
+                </p>
+            </div>
+            <div class="list-des">
+                <div class="g-left-img"><img src="../../src/images/test.png"></div>
+                <ul class="g-m-des">
+                    <li class="des-title">米其儿早教中心万达广场店</li>
+                    <li class="des-position">地点：<span class="txt-position">南京市江宁区万达广场B座</span></li>
+                    <li class="des-number-people">已有<span class="txt-people">266</span>人预约</li>
+                </ul>
+                <ul class="s-r-box">
+                    <li class="txt-distance">距离您<span class="distance-num">3.1</span>km</li>
+                    <li class="reservation-btn" data-reservationid="35"></li>
+                </ul>
+            </div>
+
+        </li>
+        <li class="list-box">
+
+            <div class="g-box">
+                <p class="img-container">
+                    <!--<img class="img-container" src="../../src/images/goods.jpg">-->
+                </p>
+            </div>
+            <div class="list-des">
+                <div class="g-left-img"><img src="../../src/images/test.png"></div>
+                <ul class="g-m-des">
+                    <li class="des-title">米其儿早教中心万达广场店</li>
+                    <li class="des-position">地点：<span class="txt-position">南京市江宁区万达广场B座</span></li>
+                    <li class="des-number-people">已有<span class="txt-people">266</span>人预约</li>
+                </ul>
+                <ul class="s-r-box">
+                    <li class="txt-distance">距离您<span class="distance-num">3.1</span>km</li>
+                    <li class="reservation-btn"></li>
+                </ul>
+            </div>
+
+        </li>
+    </ul>
+</div>
+
+<script src="../../src/js/lib/jquery-2.1.4.js"></script>
+
+<script src="../../src/js/lib/rem.js"></script>
+<script src="../../src/js/lib/fastclick.js"></script>
+<script type="text/javascript" src="http://webapi.amap.com/maps?v=1.4.6&key=249ca40bfddbad669a2ac38f5f99a002"></script>
+<script type="text/javascript" src="http://cache.amap.com/lbs/static/addToolbar.js"></script>
+<script>
+    $(function () {
+        FastClick.attach(document.body);
+    });
+</script>
+
+<script>
+    $('.reservation-btn').on('click', function (e) {
+        var reservationid = $(this).data('reservationid');
+//            console.log($(this).data('reservationid'));
+        location.href = 'organization-details.html?' + 'reservationid=' + reservationid;
+    })
+
+    /*定位*/
+    /***************************************
+     由于Chrome、IOS10等已不再支持非安全域的浏览器定位请求，为保证定位成功率和精度，请尽快升级您的站点到HTTPS。
+     ***************************************/
+
+
+
+    var map, geolocation;
+    //加载地图，调用浏览器定位服务
+    map = new AMap.Map('container', {
+        resizeEnable: true
+    });
+    map.plugin('AMap.Geolocation', function () {
+        geolocation = new AMap.Geolocation({
+            enableHighAccuracy: true,//是否使用高精度定位，默认:true
+            timeout: 10000,          //超过10秒后停止定位，默认：无穷大
+            buttonOffset: new AMap.Pixel(5, 10),//定位按钮与设置的停靠位置的偏移量，默认：Pixel(10, 20)
+            zoomToAccuracy: false,      //定位成功后调整地图视野范围使定位位置及精度范围视野内可见，默认：false
+            buttonPosition: 'RB'
+        });
+        map.addControl(geolocation);
+        geolocation.getCurrentPosition();
+        AMap.event.addListener(geolocation, 'complete', onComplete);//返回定位信息
+        AMap.event.addListener(geolocation, 'error', onError);      //返回定位出错信息
+    });
+
+    //解析定位结果
+    function onComplete(data) {
+        var str = [];
+        str.push('经度：' + data.position.getLng());
+        str.push('纬度：' + data.position.getLat());
+//        if(data.accuracy){
+//            str.push('精度：' + data.accuracy + ' 米');//如为IP精确定位结果则没有精度信息
+//        }
+//        alert(str)
+        /*将经纬度存入缓存*/
+        var lat_lng = {lng:  data.position.getLng(), lat: data.position.getLat()};
+
+        localStorage.setItem("lat_lng", JSON.stringify(lat_lng));
+    }
+    //解析定位错误信息
+    function onError(data) {
+        document.getElementById('tip').innerHTML = '定位失败';
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta charset="UTF-8">
+    <title>个人中心</title>
+    <link rel="stylesheet" href="../../src/css/lib/default.css">
+    <link rel="stylesheet" href="train_css/train.css">
+
+</head>
+<body ontouchstart class="personal-container">
+
+
+<!--没有登录-->
+<div class="bg-box" style="display: none">
+    <div class="head-pic"><img src="images/head-pic.svg"></div>
+    <p class="logIn-txt">请登录</p>
+</div>
+<!--登录过-->
+<div class="bg-box logged">
+    <div class="head-pic"><img src="images/head-.svg"></div>
+    <p class="logIn-txt">啦啦啦</p>
+    <p class="logIn-tags"><i></i>省级代理</p>
+</div>
+<ul class="items-box">
+    <li class="g-px-apply"><i></i><span>培训申请</span></li>
+    <li class="g-hx-apply"><i></i><span>会销申请</span></li>
+    <li class="g-px-list"><i></i><span>培训清单</span></li>
+    <li class="g-hx-list"><i></i><span>会销清单</span></li>
+</ul>
+<ul class="lists-box">
+    <li class="user-feedback"><i class="lists-icon userFeedback-icon"></i><span class="right-box">用户反馈<i></i></span></li>
+    <li class="kefu"><i class="lists-icon kefu-icon"></i><span class="right-box">我的客服<i></i></span></li>
+    <li class="help"><i class="lists-icon help-icon"></i><span class="right-box">帮助中心<i></i></span></li>
+</ul>
+
+<script src="../../src/js/lib/jquery-2.1.4.js"></script>
+<script src="../../src/js/lib/rem.js"></script>
+<script src="../../src/js/lib/fastclick.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    $(function () {
+        FastClick.attach(document.body);
+    });
+
+    /*跳转页面*/
+    function goToNewPage(dom,url) {
+        $(dom).on('click',function (e) {
+            location.href = url;
+        })
+    }
+    goToNewPage('.g-px-apply',"px-apply.html");
+    goToNewPage('.g-hx-apply',"hx-apply.html");
+    goToNewPage('.g-px-list',"px-apply-list.html");
+    goToNewPage('.g-hx-list',"hx-apply-list.html");
+
+    goToNewPage('.user-feedback',"user-feedback.html");
+//    goToNewPage('.kefu',"hx-apply.html");
+    goToNewPage('.help',"help.html");
+
+</script>
+</body>
+</html>

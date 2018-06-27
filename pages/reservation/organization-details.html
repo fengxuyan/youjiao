@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>预约-机构详情</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="description" content="Write an awesome description for your new site here">
+    <link rel="stylesheet" href="../../src/css/lib/default.css">
+    <link rel="stylesheet" href="../../src/css/native-style.css">
+</head>
+
+<body ontouchstart class="organization-details">
+
+<div class="g-reservationDetails-container">
+
+    <div class="details-box">
+        <div class="test-img"></div>
+        <!--<img class="g-details-img" src="../../src/images/tester.jpg">-->
+        <ul class="details-lists-box">
+            <li class="g-title">
+                <p class="title-name">米其儿早教中心万达广场店</p>
+                <p class="title-number"><span class="title-number-people">266</span>人预约过</p>
+            </li>
+            <li class="g-location"><i></i><span>南京市江宁区万达广场B座</span><i></i></li>
+            <li class="g-phone"><i></i><a href="tel:10086"><span>10086</span><i></i></a></li>
+        </ul>
+
+    </div>
+    <div class="des-box">
+        <p class="des-content">机构介绍</p>
+    </div>
+    <div class="reservationNowBtn"></div>
+
+</div>
+
+<script src="../../src/js/lib/jquery-2.1.4.js"></script>
+
+<script src="../../src/js/lib/rem.js"></script>
+<script src="../../src/js/lib/fastclick.js"></script>
+
+<script>
+    $(function () {
+        FastClick.attach(document.body);
+    });
+</script>
+
+<script>
+    function serilizeURL(url) {
+        var rs = url.split("?")[1];
+        var arr = rs.split("&");
+        var json = {};
+        for (var i = 0; i < arr.length; i++) {
+            if (arr[i].indexOf("=") != -1) {
+                json[arr[i].split("=")[0]] = arr[i].split("=")[1];
+            }
+            else {
+                json[arr[i]] = "undefined";
+            }
+        }
+        return json;
+    }
+
+    var url = location.href;
+    var reservationid = serilizeURL(url).reservationid;  //
+
+
+    $('.reservationNowBtn').on('click',function (e) {
+        location.href = 'reservation-details.html?'
+    })
+    var json_data = JSON.parse(localStorage.getItem("lat_lng"));
+
+
+    var lng = json_data['lng'];
+    var lat = json_data['lat'];
+
+    var endpoint = '花园';
+
+
+    $('.g-location').on('click',function (e) {
+        location.href = 'http://uri.amap.com/navigation?form='+lng+','+lat+','+'startpoint&to=116.3246,31.966577,'+endpoint+'&mode=car&policy=1&src=mypage&coordinate=gaode&callnative=1'
+    })
+
+
+
+</script>
+</body>
+</html>

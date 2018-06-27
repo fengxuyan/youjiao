@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>签到</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="description" content="Write an awesome description for your new site here">
+    <link rel="stylesheet" href="../../src/css/lib/default.css">
+    <link rel="stylesheet" href="../../src/css/lib/bootstrap-datepicker.min.css">
+    <link rel="stylesheet" href="../../src/css/native-style.css">
+</head>
+
+<body ontouchstart>
+
+<div class="g-datepicker-container">
+    <div id="sandbox-container">
+        <i class="top-left-icon"></i>
+        <i class="top-right-icon"></i>
+        <i class="bottom-left-icon"></i>
+        <i class="bottom-right-icon"></i>
+        <div class="sign-txt">已连续签到<span class="sign-days-num">2</span>天</div>
+        <div class="sign-box">
+            <div class="sign-btn"></div>
+        </div>
+    </div>
+</div>
+<div class="g-integral-container">
+
+    <p class="integral-title">积分兑换</p>
+
+    <div class="integral-box">
+
+        <ul class="g-lists-box">
+            <li class="g-item-box"><img class="item-pic" src="../../src/images/goods.jpg">
+                <p class="goods-title">儿童保温杯</p>
+                <p class="integral-num">1000积分兑换</p></li>
+            <li class="g-item-box"><img class="item-pic" src="../../src/images/goods.jpg">
+                <p class="goods-title">儿童保温杯</p>
+                <p class="integral-num">1000积分兑换</p></li>
+            <li class="g-item-box"><img class="item-pic" src="../../src/images/goods.jpg">
+                <p class="goods-title">儿童保温杯</p>
+                <p class="integral-num">1000积分兑换</p></li>
+            <li class="g-item-box"><img class="item-pic" src="../../src/images/goods.jpg">
+                <p class="goods-title">儿童保温杯</p>
+                <p class="integral-num">1000积分兑换</p></li>
+            <li class="g-item-box"><img class="item-pic" src="../../src/images/goods.jpg">
+                <p class="goods-title">儿童保温杯</p>
+                <p class="integral-num">1000积分兑换</p></li>
+            <li class="g-item-box"><img class="item-pic" src="../../src/images/goods.jpg">
+                <p class="goods-title">儿童保温杯</p>
+                <p class="integral-num">1000积分兑换</p></li>
+        </ul>
+    </div>
+
+</div>
+
+<div class="mask"></div>
+
+<div class="maskImg-container">
+    <div class="txt-container">
+        <p>恭喜您今日签到成功!</p>
+        <p class="integral-txt">+<span class="integral-num">1</span>积分</p>
+    </div>
+    <div class="close"></div>
+
+</div>
+
+<script src="../../src/js/lib/jquery-2.1.4.js"></script>
+<script src="../../src/js/lib/bootstrap-datepicker.js"></script>
+<script src="../../src/js/lib/rem.js"></script>
+<script src="../../src/js/lib/fastclick.js"></script>
+
+<script>
+    $(function () {
+        FastClick.attach(document.body);
+
+        $('#sandbox-container')
+            .datepicker()
+            .on('changeMonth', function (ev) {
+                /*判断今天是否签到，如果签到，则深色背景色，否则，圈
+                * 代码  默认签到了
+                * */
+                setTimeout(function () {
+                    signedLists();
+                    //默认签到
+                    $('.today.day').css({'background-image': ' url(../../src/images/circle-bg.png)', 'color': '#fff'});
+
+                })
+            });
+    });
+</script>
+
+<script>
+
+    var hasSignMask = false;
+
+    var glistsBoxLength = $('.g-item-box').length * 2.67 + ($('.g-item-box').length) * 0.27;
+    $('.g-lists-box').css('width', glistsBoxLength + 'rem');
+
+    $('.sign-btn').on('click', function (event) {
+
+
+        $(this).css('background-image', ' url(../../src/images/button-success.png)')
+        $('.today.day').css({'background-image': ' url(../../src/images/circle-bg.png)', 'color': '#fff'});
+        if(false === hasSignMask){
+            $('.mask').show();
+            $('.maskImg-container').show();
+            hasSignMask = true;
+        }
+    })
+    
+    $('.close').on('click',function (event) {
+        $('.mask').hide();
+        $('.maskImg-container').hide();
+    })
+
+    /*
+    *
+    * 签到日历显示
+    * */
+    //    var signedDate = '2018/06/01';
+    var signedDate = ['2018/05/07', '2018/06/08', '2018/05/20', '2018/06/21', '2018/06/17', '2018/08/17'];
+    var signedDateLength = signedDate.length;
+    for (var i = 0; i < signedDateLength; i++) {
+        signedDate[i] = parseInt(new Date(signedDate[i]).getTime()) + parseInt(28800000);
+    }
+
+    function signedLists() {
+
+        var dayLists = []; // 当前显示日期表的数组
+        var signedLists = []; //签到日期数组
+        var dayLength = $('.day').length; // 当前显示日期表的数组长度
+        var todaytamp = $('.today.day').data('date') //今天时间戳
+
+        for (var j = 0; j < signedDateLength; j++) {
+
+            // 循环，将当前时间戳与日历时间匹配，显示深色背景
+            for (var i = 0; i < dayLength; i++) {
+                var daytampObj = $($('.day')[i]);
+                var daytamp = $($('.day')[i]).data('date');
+
+                // 这里只写了一天
+                if (signedDate[j] != undefined && signedDate[j] == daytamp) {
+                    daytampObj.css({
+                        'background-image': ' url(../../src/images/circle-bg.png)',
+                        'background-repeat': 'no-repeat',
+                        'background-position': 'center',
+                        'background-size': 'contain',
+                        'color': '#fff'
+                    })
+                }
+
+            }
+        }
+    }
+
+    $(document).ready(function () {
+            setTimeout(function () {
+                signedLists();
+            }, 100)
+        }
+    )
+
+</script>
+</body>
+</html>

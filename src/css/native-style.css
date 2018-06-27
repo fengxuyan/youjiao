@@ -1,0 +1,1090 @@
+@charset "UTF-8";
+/*签到*/
+body {
+  background-color: #E5F8F2; }
+
+.datepicker-inline {
+  width: 100%; }
+  .datepicker-inline .table-condensed {
+    width: 8.13rem;
+    margin: 0 auto;
+    height: 6.11rem;
+    overflow: hidden;
+    border-collapse: separate;
+    border-spacing: 0px;
+    border-radius: 0.11rem; }
+
+.datepicker {
+  padding: 0;
+  border-radius: 0; }
+
+.dow {
+  color: #FFFFFF;
+  font-size: 0.37rem;
+  width: auto !important;
+  border: 0 !important;
+  border-radius: 0 !important; }
+
+.datepicker .datepicker-switch:hover, .datepicker .next:hover, .datepicker .prev:hover, .datepicker tfoot tr th:hover {
+  background: none; }
+
+.datepicker td {
+  font-size: .37rem; }
+
+.datepicker td, .datepicker th {
+  height: .2rem;
+  border: 0;
+  border-radius: 0; }
+
+.prev {
+  display: inline-block;
+  width: .42rem;
+  height: .5rem;
+  vertical-align: middle;
+  background-image: url("../images/left.png") !important;
+  background-size: 100% 100%;
+  background-repeat: no-repeat !important;
+  background-size: contain !important; }
+
+.next {
+  display: inline-block;
+  width: .42rem;
+  height: .5rem;
+  vertical-align: middle;
+  background-image: url("../images/right.png") !important;
+  background-size: 100% 100%;
+  background-repeat: no-repeat !important;
+  background-size: contain !important; }
+
+.picker-box {
+  width: 80%;
+  margin: 0 auto;
+  height: 1.29rem;
+  line-height: 1.2rem; }
+  .picker-box .datepicker-switch {
+    padding: 0 .27rem;
+    font-size: 0.37rem;
+    vertical-align: middle; }
+
+#sandbox-container {
+  position: relative;
+  margin: 0 auto;
+  margin-top: .4rem;
+  border: 0.04rem solid #5BE1B6;
+  width: 9.2rem;
+  height: 8.99rem;
+  box-sizing: border-box;
+  border-radius: 0.13rem; }
+  #sandbox-container .top-left-icon {
+    display: inline-block;
+    width: 0.21rem;
+    height: 0.21rem;
+    background: #5be1b6;
+    border-radius: 50%;
+    position: absolute;
+    left: .13rem;
+    top: .13rem; }
+  #sandbox-container .top-right-icon {
+    display: inline-block;
+    width: 0.21rem;
+    height: 0.21rem;
+    background: #5be1b6;
+    border-radius: 50%;
+    position: absolute;
+    right: .13rem;
+    top: .13rem; }
+  #sandbox-container .bottom-left-icon {
+    display: inline-block;
+    width: 0.21rem;
+    height: 0.21rem;
+    background: #5be1b6;
+    border-radius: 50%;
+    position: absolute;
+    left: .13rem;
+    bottom: .13rem; }
+  #sandbox-container .bottom-right-icon {
+    display: inline-block;
+    width: 0.21rem;
+    height: 0.21rem;
+    background: #5be1b6;
+    border-radius: 50%;
+    position: absolute;
+    right: .13rem;
+    bottom: .13rem; }
+  #sandbox-container .sign-txt {
+    position: absolute;
+    bottom: .95rem;
+    text-align: center;
+    font-size: .37rem;
+    width: 100%; }
+  #sandbox-container .sign-box {
+    width: 100%;
+    position: absolute;
+    bottom: -.5rem;
+    text-align: center; }
+    #sandbox-container .sign-box .sign-btn {
+      display: inline-block;
+      height: 1rem;
+      width: 4.85rem;
+      background-image: url(../images/button.png);
+      background-size: 4.85rem 1rem;
+      background-repeat: no-repeat;
+      background-position: center;
+      /* text-align: center; */ }
+
+.hasSigned {
+  background-size: contain;
+  background-image: url(../images/circle-bg.png) !important;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: none !important; }
+
+.active.day {
+  color: #000 !important;
+  background: none; }
+
+/*
+签到日历
+*/
+.g-integral-container {
+  position: relative;
+  border-top: 0.01rem solid #5be1b6;
+  margin-top: 1.17rem;
+  margin-left: .4rem;
+  margin-right: .4rem; }
+  .g-integral-container .integral-title {
+    position: absolute;
+    top: -.32rem;
+    left: calc(50% - .9rem - .18rem);
+    padding: 0 .36rem;
+    font-size: .45rem;
+    text-align: center;
+    background-color: #E5F8F2; }
+  .g-integral-container .integral-box {
+    width: 100%;
+    height: 5rem;
+    overflow-x: scroll;
+    overflow-y: hidden; }
+    .g-integral-container .integral-box .g-lists-box .g-item-box {
+      display: inline-block;
+      float: left;
+      margin-top: .75rem;
+      margin-right: .27rem;
+      height: 4rem; }
+      .g-integral-container .integral-box .g-lists-box .g-item-box .item-pic {
+        width: 2.67rem;
+        height: 2.67rem; }
+      .g-integral-container .integral-box .g-lists-box .g-item-box .goods-title {
+        padding-top: .15rem;
+        font-size: .37rem;
+        color: #333; }
+      .g-integral-container .integral-box .g-lists-box .g-item-box .integral-num {
+        color: #F7A173;
+        font-size: .29rem; }
+
+/*
+遮罩层
+*/
+.mask {
+  display: none;
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  z-index: 1001;
+  -moz-opacity: 0.6;
+  opacity: .6;
+  filter: alpha(opacity=88);
+  overflow: hidden; }
+
+.maskImg-container {
+  display: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 10%;
+  z-index: 1002;
+  background-image: url(../images/sign-success.png);
+  background-size: 8rem 7rem;
+  background-repeat: no-repeat;
+  background-position: top center; }
+  .maskImg-container .close {
+    width: 1rem;
+    margin: 0 auto; }
+  .maskImg-container .close:after {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    top: 7.27rem;
+    width: 1rem;
+    height: 1rem;
+    background-image: url(../images/close.png);
+    background-size: 100% 100%;
+    z-index: 2003; }
+  .maskImg-container .txt-container {
+    text-align: center;
+    position: relative;
+    color: #6D3E31;
+    font-family: 'HYTiaoTiaoTiJ';
+    font-size: 0.48rem;
+    top: 4rem; }
+    .maskImg-container .txt-container .integral-txt {
+      padding-top: .4rem;
+      color: #FEC731;
+      font-size: 0.53rem; }
+
+/*预约*/
+.reservation {
+  background-color: #EEE; }
+  .reservation .lists-container {
+    background-color: #eee; }
+    .reservation .lists-container .list-box {
+      margin-bottom: .27rem;
+      height: 7.52rem;
+      padding: 0 .4rem;
+      background-color: #fff; }
+      .reservation .lists-container .list-box .g-box {
+        background: #fff;
+        padding: .27rem 0; }
+        .reservation .lists-container .list-box .g-box .img-container {
+          display: block;
+          width: 100%;
+          height: 5.33rem;
+          background-image: url("../images/goods1.jpg");
+          background-size: cover;
+          background-repeat: no-repeat;
+          background-position: center;
+          border-radius: 5px; }
+      .reservation .lists-container .list-box .list-des {
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        position: relative; }
+        .reservation .lists-container .list-box .list-des .g-left-img, .reservation .lists-container .list-box .list-des .g-m-des {
+          display: inline-block;
+          float: left; }
+        .reservation .lists-container .list-box .list-des .g-left-img img {
+          display: inline-block;
+          width: 1.07rem;
+          height: 1.07rem;
+          border-radius: 50%; }
+        .reservation .lists-container .list-box .list-des .g-m-des {
+          padding-left: .13rem; }
+          .reservation .lists-container .list-box .list-des .g-m-des .des-title {
+            font-size: 0.4rem;
+            color: #333; }
+          .reservation .lists-container .list-box .list-des .g-m-des .des-position {
+            font-size: 0.29rem;
+            color: #999; }
+          .reservation .lists-container .list-box .list-des .g-m-des .des-number-people {
+            font-size: 0.29rem;
+            color: #999; }
+        .reservation .lists-container .list-box .list-des .s-r-box {
+          position: absolute;
+          right: 0;
+          display: inline-block;
+          text-align: right; }
+          .reservation .lists-container .list-box .list-des .s-r-box .txt-distance {
+            font-size: 0.29rem;
+            color: #999;
+            text-align: right; }
+          .reservation .lists-container .list-box .list-des .s-r-box .reservation-btn {
+            display: inline-block;
+            width: 2.13rem;
+            height: .67rem;
+            padding-top: .13rem;
+            background-image: url(../../src/images/reservationBtn.png);
+            background-size: 100% .67rem;
+            background-repeat: no-repeat;
+            background-position: right; }
+
+/*
+预约-机构详情
+*/
+.organization-details {
+  background-color: #EEE; }
+
+.details-box .test-img {
+  /*  图片大小
+    width:750px;
+    height:440px;*/
+  width: 100%;
+  height: 5.87rem;
+  background-image: url("../images/goods1.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center; }
+.details-box .details-lists-box {
+  background-color: #fff; }
+  .details-box .details-lists-box .g-title {
+    padding: .27rem .4rem;
+    border-bottom: 1px solid #D3D3D3; }
+    .details-box .details-lists-box .g-title .title-name {
+      font-size: 0.4rem;
+      color: #333; }
+    .details-box .details-lists-box .g-title .title-number {
+      font-size: 0.29rem;
+      color: #999; }
+  .details-box .details-lists-box .g-location {
+    display: flex;
+    align-items: center;
+    padding: 0 .4rem;
+    border-bottom: 1px solid #D3D3D3;
+    height: .93rem;
+    font-size: 0.35rem;
+    color: #363636; }
+    .details-box .details-lists-box .g-location i:first-child {
+      display: inline-block;
+      margin-right: .28rem;
+      width: .4rem;
+      height: .4rem;
+      background-image: url(../images/address.svg);
+      background-size: .36rem 100%;
+      background-repeat: no-repeat;
+      background-position: center; }
+    .details-box .details-lists-box .g-location i:last-child {
+      display: inline-block;
+      margin-right: .28rem;
+      width: .2rem;
+      height: .4rem;
+      background-image: url(../images/jiantou.svg);
+      background-size: .36rem 100%;
+      background-repeat: no-repeat;
+      background-position: center;
+      position: absolute;
+      right: 0; }
+  .details-box .details-lists-box .g-phone {
+    display: flex;
+    align-items: center;
+    padding: 0 .4rem;
+    height: .93rem; }
+    .details-box .details-lists-box .g-phone i:first-child {
+      display: inline-block;
+      margin-right: .28rem;
+      width: .4rem;
+      height: .4rem;
+      background-image: url(../images/phone.svg);
+      background-size: .36rem 100%;
+      background-repeat: no-repeat;
+      background-position: center; }
+    .details-box .details-lists-box .g-phone i:last-child {
+      display: inline-block;
+      margin-right: .28rem;
+      width: .2rem;
+      height: .4rem;
+      background-image: url(../images/jiantou.svg);
+      background-size: .36rem 100%;
+      background-repeat: no-repeat;
+      background-position: center;
+      position: absolute;
+      right: 0; }
+    .details-box .details-lists-box .g-phone a {
+      font-size: 0.35rem;
+      color: #363636;
+      width: 100%; }
+
+.g-reservationOrder-details {
+  margin-top: .27rem;
+  margin-bottom: .39rem;
+  background-color: #fff;
+  font-size: 0.37rem;
+  color: #333; }
+  .g-reservationOrder-details li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 .4rem;
+    /* height: 1.19rem; */
+    /* line-height: 1.19rem; */
+    border-bottom: 1px solid #D3D3D3;
+    padding: .41rem 0;
+    font-size: 0.37rem;
+    color: #333; }
+    .g-reservationOrder-details li img {
+      padding-right: .1rem;
+      display: inline-block;
+      width: 0.8rem;
+      height: 0.8rem;
+      border-radius: 50%; }
+    .g-reservationOrder-details li .arrowDirection {
+      transform: rotate(90deg); }
+    .g-reservationOrder-details li:first-child {
+      margin: 0;
+      padding: 0 .4rem;
+      height: .93rem;
+      font-weight: bold;
+      font-size: 0.4rem;
+      color: #333; }
+    .g-reservationOrder-details li:last-child {
+      border: 0;
+      justify-content: stretch; }
+  .g-reservationOrder-details .get-babyInfo {
+    display: block; }
+    .g-reservationOrder-details .get-babyInfo .dropDown-list {
+      display: none;
+      margin-top: .23rem;
+      background-color: #F8F8F8;
+      line-height: .88rem; }
+      .g-reservationOrder-details .get-babyInfo .dropDown-list .info-box {
+        display: inline-block;
+        width: 33%;
+        text-align: center; }
+    .g-reservationOrder-details .get-babyInfo .info-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between; }
+      .g-reservationOrder-details .get-babyInfo .info-title .info-img-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        float: right; }
+        .g-reservationOrder-details .get-babyInfo .info-title .info-img-container img:last-of-type {
+          margin-right: .13rem; }
+        .g-reservationOrder-details .get-babyInfo .info-title .info-img-container i {
+          display: inline-block;
+          margin-right: .28rem;
+          width: .2rem;
+          height: .4rem;
+          background-image: url(../images/jiantou-huise.svg);
+          background-size: .36rem 100%;
+          background-repeat: no-repeat;
+          background-position: center;
+          position: absolute;
+          right: 0; }
+
+.des-box {
+  margin-top: .27rem;
+  min-height: 4rem;
+  background: #fff; }
+  .des-box .des-content {
+    padding-top: .72rem;
+    text-align: center;
+    font-size: 0.4rem;
+    color: #363636; }
+
+.reservationNowBtn {
+  margin-top: 1.2rem;
+  height: 1.07rem;
+  background-image: url("../images/reservationNowBtn.png");
+  background-size: 8rem 1.07rem;
+  background-position: center;
+  background-repeat: no-repeat; }
+
+/* 预约信息详情填写*/
+.reservation-details {
+  height: 100%;
+  background-color: #EEE; }
+  .reservation-details .g-lists-container .lists-box li {
+    display: flex;
+    position: relative;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: space-between;
+    height: 1.17rem;
+    padding: .4rem;
+    text-align: right;
+    font-size: 0.37rem;
+    color: #333;
+    background-color: #fff;
+    border-bottom: 0.01rem solid #e0dcdc; }
+    .reservation-details .g-lists-container .lists-box li input {
+      border: 0;
+      text-align: right;
+      height: 1.1rem;
+      width: 75%;
+      font-size: 0.37rem;
+      color: #999; }
+    .reservation-details .g-lists-container .lists-box li span {
+      float: right;
+      font-size: 0.37rem;
+      color: #999;
+      display: flex;
+      align-items: center;
+      font-size: 0.37rem;
+      color: #999; }
+    .reservation-details .g-lists-container .lists-box li .babyInfo_pic {
+      position: absolute;
+      border-radius: 50%;
+      right: .8rem;
+      display: inline-block;
+      width: 0.8rem;
+      height: 0.8rem;
+      background-image: url("../images/test.png");
+      background-size: cover;
+      background-repeat: no-repeat; }
+    .reservation-details .g-lists-container .lists-box li i {
+      display: inline-block;
+      position: absolute;
+      right: 0;
+      width: .4rem;
+      height: .4rem;
+      background-image: url(../images/jiantou-huise.svg);
+      background-size: .36rem 100%;
+      background-repeat: no-repeat;
+      background-position: center; }
+  .reservation-details .g-lists-container .lists-box .input-left:after {
+    content: '';
+    display: inline-block;
+    width: .2rem;
+    height: .4rem;
+    background-image: url(../images/jiantou-huise.svg);
+    background-size: .36rem 100%;
+    background-repeat: no-repeat;
+    background-position: center; }
+  .reservation-details .g-lists-container .lists-box .note-box {
+    display: flex;
+    padding: .4rem .4rem;
+    height: auto;
+    text-align: left; }
+    .reservation-details .g-lists-container .lists-box .note-box .g-txt-area {
+      font-size: 0.37rem;
+      color: #333;
+      border: 1px solid #D3D3D3;
+      box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+      -webkit-appearance: none; }
+  .reservation-details .g-lists-container .submit-btn {
+    display: block;
+    margin: 1.07rem auto 0 auto;
+    width: 8rem;
+    height: 1.07rem;
+    line-height: 1.07rem;
+    background: #5be1b6;
+    border-radius: 0.13rem;
+    text-align: center; }
+    .reservation-details .g-lists-container .submit-btn span {
+      font-size: 0.4rem;
+      color: #fff; }
+@keyframes myfirst {
+  from {
+    bottom: -25rem; }
+  to {
+    bottom: 0; } }
+@-moz-keyframes myfirst /* Firefox */ {
+  from {
+    bottom: -25rem; }
+  to {
+    bottom: 0; } }
+@-webkit-keyframes myfirst /* Safari 和 Chrome */ {
+  from {
+    bottom: -25rem; }
+  to {
+    bottom: 0; } }
+@-o-keyframes myfirst /* Opera */ {
+  from {
+    bottom: -25rem; }
+  to {
+    bottom: 0; } }
+  .reservation-details .popMask {
+    display: none;
+    background: #fff;
+    bottom: 0;
+    -webkit-animation: myfirst 0.3s;
+    animation: myfirst 0.3s;
+    position: absolute;
+    z-index: 99;
+    height: auto;
+    width: 100%; }
+    .reservation-details .popMask .popMask-title {
+      height: 1.2rem;
+      line-height: 1.2rem;
+      font-size: 0.4rem;
+      color: #333;
+      text-align: center;
+      border-bottom: 1px solid #D3D3D3; }
+    .reservation-details .popMask .popMask-item-box {
+      overflow: hidden;
+      font-size: 0.37rem;
+      color: #333; }
+      .reservation-details .popMask .popMask-item-box > li {
+        display: inline-block;
+        float: left;
+        width: 50%;
+        height: .93rem;
+        line-height: .93rem;
+        text-align: center; }
+      .reservation-details .popMask .popMask-item-box .clicked {
+        color: #6EE5BF; }
+      .reservation-details .popMask .popMask-item-box .left-day {
+        display: inline-block;
+        float: left;
+        width: 50%; }
+        .reservation-details .popMask .popMask-item-box .left-day li {
+          background-color: #F0F0F0;
+          height: .93rem;
+          line-height: .93rem;
+          text-align: center; }
+        .reservation-details .popMask .popMask-item-box .left-day .clicked-leftDay {
+          background-color: #fff; }
+      .reservation-details .popMask .popMask-item-box .right-time {
+        width: 50%;
+        display: inline-block;
+        float: left; }
+        .reservation-details .popMask .popMask-item-box .right-time li {
+          width: 50%;
+          display: inline-block;
+          float: left;
+          box-sizing: border-box;
+          height: .93rem;
+          line-height: .93rem;
+          padding: 0 1rem; }
+  .reservation-details .reservation-mask {
+    display: none;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 98; }
+
+/*宝宝信息*/
+.babyInfo {
+  background-color: #eee; }
+
+.g-babyInfo-container {
+  /*尚未添加宝宝*/
+  /*有宝宝列表*/ }
+  .g-babyInfo-container .add-baby-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 1.33rem;
+    background-color: #fff; }
+    .g-babyInfo-container .add-baby-btn button {
+      width: 8rem;
+      height: 1.07rem;
+      border: 0;
+      background-color: #5BE1B6;
+      color: #fff;
+      font-size: 0.4rem;
+      border-radius: 0.13rem; }
+  .g-babyInfo-container .g-info-empty {
+    position: relative;
+    min-height: 100vh; }
+    .g-babyInfo-container .g-info-empty .empty-pic {
+      width: 100%;
+      height: 10rem;
+      background-image: url("../images/personal-information.png");
+      background-size: 4.97rem 5.12rem;
+      background-repeat: no-repeat;
+      background-position: center; }
+  .g-babyInfo-container .g-babyLists-container {
+    background-color: #eee; }
+    .g-babyInfo-container .g-babyLists-container .babyLists-box {
+      display: flex;
+      align-items: center;
+      margin-bottom: .27rem;
+      padding: .4rem;
+      position: relative;
+      background-color: #fff; }
+      .g-babyInfo-container .g-babyLists-container .babyLists-box div {
+        display: inline-block; }
+      .g-babyInfo-container .g-babyLists-container .babyLists-box .g-left-icon.choosed {
+        display: inline-block;
+        width: 0.4rem;
+        height: 0.4rem;
+        background-image: url("../images/choosed.svg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-size: .4rem .4rem; }
+      .g-babyInfo-container .g-babyLists-container .babyLists-box .g-left-icon.choose {
+        display: inline-block;
+        width: 0.4rem;
+        height: 0.4rem;
+        background-image: url("../images/choose.svg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-size: .4rem .4rem; }
+      .g-babyInfo-container .g-babyLists-container .babyLists-box .g-right-arrow {
+        position: absolute;
+        right: .4rem;
+        display: inline-block;
+        width: 0.19rem;
+        height: 0.35rem;
+        background-image: url("../images/jiantou.svg");
+        background-size: cover;
+        background-repeat: no-repeat; }
+      .g-babyInfo-container .g-babyLists-container .babyLists-box .g-m-pic {
+        vertical-align: middle;
+        padding: 0 .27rem;
+        display: inline-block;
+        width: 1.33rem;
+        height: 1.33rem;
+        border-radius: 50%; }
+      .g-babyInfo-container .g-babyLists-container .babyLists-box .g-m-des .des-name {
+        display: flex;
+        align-items: center;
+        font-size: 0.4rem;
+        color: #3D3D3D; }
+        .g-babyInfo-container .g-babyLists-container .babyLists-box .g-m-des .des-name img {
+          display: inline-block;
+          width: .29rem;
+          height: .29rem; }
+      .g-babyInfo-container .g-babyLists-container .babyLists-box .g-m-des .des-age {
+        font-size: 0.35rem;
+        color: #999; }
+
+.success-icon {
+  width: 1rem;
+  height: 1rem;
+  /* border: 1px solid red; */
+  display: inline-block; }
+
+/*物流详情*/
+.logistics {
+  background-color: #eee; }
+  .logistics .flowChart {
+    background-color: #fff;
+    display: table;
+    padding-left: .4rem; }
+  .logistics .flowChart-left {
+    display: table-cell;
+    width: .4rem;
+    flex-shrink: 0;
+    border-right: 1px solid #D3D3D3; }
+  .logistics .flowChart-right {
+    display: table-cell;
+    width: 100%;
+    margin: .4rem 0 0 0; }
+  .logistics .flowChart .dashed {
+    margin-left: .4rem; }
+  .logistics .flowChart .oneNode {
+    display: flex;
+    align-items: center;
+    width: 100%; }
+  .logistics .flowChart .check {
+    width: .45rem;
+    height: .45rem;
+    position: relative;
+    left: -.25rem;
+    top: -.3rem; }
+  .logistics .flowChart .check-before {
+    background-image: url(../images/dot.svg);
+    background-size: .23rem .23rem;
+    background-position: center;
+    background-repeat: no-repeat; }
+  .logistics .flowChart .check-now {
+    background-image: url(../images/circle.png);
+    background-size: cover;
+    background-position: center; }
+  .logistics .flowChart .NodeDetail {
+    flex-grow: 1;
+    border-bottom: 1px solid #D3D3D3;
+    display: flex;
+    flex-direction: column; }
+  .logistics .NodeDetail-content {
+    display: flex;
+    align-items: center;
+    height: 1.33rem; }
+
+.logistics-title-box {
+  display: flex;
+  align-items: center;
+  height: 2.13rem;
+  background-color: #fff;
+  margin-bottom: .27rem;
+  padding-left: .6rem; }
+  .logistics-title-box .kuaidi_icon {
+    display: inline-block;
+    width: 1.33rem;
+    height: 1.33rem;
+    padding-right: .4rem; }
+  .logistics-title-box .title-item .name-txt {
+    font-size: 0.37rem;
+    color: #333; }
+  .logistics-title-box .title-item .number-txt {
+    font-size: 0.29rem;
+    color: #999; }
+
+.NodeDetail-content .des-txt {
+  font-size: 0.37rem;
+  color: #333; }
+.NodeDetail-content .time-txt {
+  font-size: 0.37rem;
+  color: #999; }
+
+/*活动详情*/
+.activities-details {
+  margin-bottom: 2rem;
+  background-color: #EEE; }
+  .activities-details .details-box .test-img {
+    /*  图片大小
+      width:750px;
+      height:440px;*/
+    width: 100%;
+    height: 5.87rem;
+    background-image: url("../images/goods1.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center; }
+  .activities-details .details-box .details-lists-box {
+    background-color: #fff; }
+    .activities-details .details-box .details-lists-box .g-title {
+      padding: .27rem .4rem;
+      border-bottom: 1px solid #D3D3D3; }
+      .activities-details .details-box .details-lists-box .g-title span {
+        font-size: 0.29rem;
+        color: #999; }
+      .activities-details .details-box .details-lists-box .g-title p + span:first-of-type {
+        padding-right: .53rem; }
+      .activities-details .details-box .details-lists-box .g-title i {
+        padding-left: .1rem; }
+      .activities-details .details-box .details-lists-box .g-title .title-name {
+        font-size: 0.48rem;
+        color: #333; }
+      .activities-details .details-box .details-lists-box .g-title .title-number {
+        font-size: 0.29rem;
+        color: #999; }
+      .activities-details .details-box .details-lists-box .g-title .price-txt {
+        display: inline-block;
+        float: right;
+        font-size: 0.48rem;
+        color: #FF2920; }
+    .activities-details .details-box .details-lists-box .g-time {
+      display: flex;
+      align-items: center;
+      padding: 0 .4rem;
+      border-bottom: 1px solid #D3D3D3;
+      height: .93rem;
+      font-size: 0.35rem;
+      color: #363636; }
+      .activities-details .details-box .details-lists-box .g-time i:first-child {
+        display: inline-block;
+        margin-right: .28rem;
+        width: .4rem;
+        height: .4rem;
+        background-image: url(../images/time.svg);
+        background-size: .36rem 100%;
+        background-repeat: no-repeat;
+        background-position: center; }
+    .activities-details .details-box .details-lists-box .g-location {
+      display: flex;
+      align-items: center;
+      padding: 0 .4rem;
+      border-bottom: 1px solid #D3D3D3;
+      height: .93rem;
+      font-size: 0.35rem;
+      color: #363636; }
+      .activities-details .details-box .details-lists-box .g-location i:first-child {
+        display: inline-block;
+        margin-right: .28rem;
+        width: .4rem;
+        height: .4rem;
+        background-image: url(../images/address.svg);
+        background-size: .36rem 100%;
+        background-repeat: no-repeat;
+        background-position: center; }
+      .activities-details .details-box .details-lists-box .g-location i:last-child {
+        display: inline-block;
+        margin-right: .28rem;
+        width: .2rem;
+        height: .4rem;
+        background-image: url(../images/jiantou.svg);
+        background-size: .36rem 100%;
+        background-repeat: no-repeat;
+        background-position: center;
+        position: absolute;
+        right: 0; }
+    .activities-details .details-box .details-lists-box .g-person {
+      display: flex;
+      align-items: center;
+      padding: 0 .4rem;
+      height: .93rem;
+      font-size: 0.35rem;
+      color: #363636; }
+      .activities-details .details-box .details-lists-box .g-person i:first-child {
+        display: inline-block;
+        margin-right: .28rem;
+        width: .4rem;
+        height: .4rem;
+        background-image: url(../images/person-number.svg);
+        background-size: .36rem 100%;
+        background-repeat: no-repeat;
+        background-position: center; }
+      .activities-details .details-box .details-lists-box .g-person i:last-child {
+        display: inline-block;
+        margin-right: .28rem;
+        width: .2rem;
+        height: .4rem;
+        background-image: url(../images/jiantou.svg);
+        background-size: .36rem 100%;
+        background-repeat: no-repeat;
+        background-position: center;
+        position: absolute;
+        right: 0; }
+      .activities-details .details-box .details-lists-box .g-person a {
+        font-size: 0.35rem;
+        color: #363636;
+        width: 100%; }
+  .activities-details .initiator-box {
+    margin-top: .27rem;
+    background-color: #fff; }
+    .activities-details .initiator-box .box-container {
+      padding: .27rem .4rem; }
+    .activities-details .initiator-box .left-img {
+      width: 1.2rem;
+      height: 1.2rem;
+      display: inline-block;
+      float: left; }
+      .activities-details .initiator-box .left-img img {
+        width: 100%; }
+    .activities-details .initiator-box .right-des {
+      display: inline-block;
+      width: 84%;
+      padding-left: .27rem; }
+      .activities-details .initiator-box .right-des .des-title {
+        font-size: 0.37rem;
+        color: #333; }
+      .activities-details .initiator-box .right-des .des-content {
+        font-size: 0.35rem;
+        color: #999; }
+    .activities-details .initiator-box .initiator-name {
+      margin: 0 .4rem;
+      padding: .27rem 0;
+      font-size: 0.4rem;
+      color: #333;
+      border-bottom: 1px solid #D3D3D3; }
+  .activities-details .activities-des-box {
+    margin-top: .27rem;
+    background-color: #fff;
+    font-size: 0.48rem;
+    color: #333;
+    text-align: center; }
+  .activities-details .footer-box {
+    position: fixed;
+    bottom: 0;
+    width: 100%; }
+    .activities-details .footer-box div {
+      display: inline-block; }
+    .activities-details .footer-box .left-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      float: left;
+      width: 30%;
+      height: 1.31rem;
+      background-color: #fff;
+      color: #000; }
+      .activities-details .footer-box .left-icon span {
+        display: block;
+        text-align: center;
+        font-size: 0.29rem;
+        color: #333; }
+      .activities-details .footer-box .left-icon .icon-container {
+        display: inline-block; }
+        .activities-details .footer-box .left-icon .icon-container .collection-icon {
+          display: inline-block;
+          width: 0.59rem;
+          height: 0.53rem;
+          background-image: url("../images/collection.svg");
+          background-size: cover;
+          background-repeat: no-repeat;
+          display: block;
+          margin: 0 auto; }
+        .activities-details .footer-box .left-icon .icon-container .collected-icon {
+          display: inline-block;
+          width: 0.59rem;
+          height: 0.53rem;
+          background-image: url("../images/red-collection.png");
+          background-size: cover;
+          background-repeat: no-repeat;
+          display: block;
+          margin: 0 auto; }
+    .activities-details .footer-box .right-icon {
+      width: 70%;
+      background-color: #5BE1B6;
+      line-height: 1.31rem;
+      text-align: center;
+      vertical-align: middle;
+      font-size: 0.48rem;
+      color: #fff; }
+  .activities-details .mask-container {
+    display: none;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #000;
+    opacity: .4; }
+@keyframes pop_form {
+  from {
+    bottom: -5rem; }
+  to {
+    bottom: 0px; } }
+@-moz-keyframes pop_form /* Firefox */ {
+  from {
+    bottom: -5rem; }
+  to {
+    bottom: 0px; } }
+@-webkit-keyframes pop_form /* Safari 和 Chrome */ {
+  from {
+    bottom: -5rem; }
+  to {
+    bottom: 0px; } }
+@-o-keyframes pop_form /* Opera */ {
+  from {
+    bottom: -5rem; }
+  to {
+    bottom: 0px; } }
+  .activities-details .mask-info {
+    display: none;
+    position: fixed;
+    bottom: 0rem;
+    width: 100%;
+    height: 4.75rem;
+    background-color: #fff;
+    animation: pop_form 0.5s infinite;
+    -moz-animation: pop_form 0.5s infinite;
+    /* Firefox */
+    -webkit-animation: pop_form 0.5s infinite;
+    /* Safari and Chrome */
+    -o-animation: pop_form 0.5s infinite;
+    /* Opera */
+    animation-iteration-count: 1; }
+    .activities-details .mask-info p {
+      height: .93rem;
+      line-height: .93rem;
+      padding-left: .4rem;
+      font-size: 0.4rem;
+      color: #333;
+      border-bottom: 1px solid #D3D3D3; }
+    .activities-details .mask-info .list-box {
+      margin: 0 1rem; }
+      .activities-details .mask-info .list-box li {
+        border-bottom: 1px solid #5BE1B6; }
+      .activities-details .mask-info .list-box input {
+        height: 1.15rem;
+        line-height: 1.15rem;
+        width: 100%;
+        font-size: 0.37rem;
+        color: #999;
+        border: 0; }
+    .activities-details .mask-info .btn-box div {
+      display: inline-block;
+      position: absolute;
+      bottom: 0;
+      width: 50%;
+      height: 1.07rem;
+      text-align: center;
+      line-height: 1.07rem;
+      border: 1px solid #5BE1B6; }
+    .activities-details .mask-info .btn-box .left-cancel {
+      left: 0;
+      background-color: #fff;
+      font-size: 0.4rem;
+      color: #333; }
+    .activities-details .mask-info .btn-box .right-sure {
+      right: 0;
+      background-color: #5BE1B6;
+      font-size: 0.4rem;
+      color: #fff; }
+
+/*# sourceMappingURL=native-style.css.map */

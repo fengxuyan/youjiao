@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>宝宝信息</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="description" content="Write an awesome description for your new site here">
+    <link rel="stylesheet" href="../../src/css/lib/default.css">
+    <link rel="stylesheet" href="../../src/css/native-style.css">
+</head>
+
+<body ontouchstart class="babyInfo">
+<div class="g-babyInfo-container">
+
+    <!--没有宝宝信息-->
+    <div class="g-info-empty" style="display: none">
+        <div class="empty-pic"></div>
+        <div class="add-baby-btn">
+            <button>添加宝宝</button>
+        </div>
+    </div>
+
+    <!--有宝宝信息-->
+    <ul class="g-babyLists-container" style="display: block">
+        <li class="babyLists-box">
+            <div class="g-left-icon choose" data-babyId="1"><i></i></div>
+            <img class="g-m-pic" src="../../src/images/test.png">
+            <div class="g-m-des">
+                <p class="des-name"><img src="../../src/images/_female.svg">米宝</p>
+                <p class="des-age">6岁10个月</p>
+            </div>
+            <div class="g-right-arrow"></div>
+        </li>
+        <li class="babyLists-box">
+            <div class="g-left-icon choose"  data-babyId="11"><i></i></div>
+            <img class="g-m-pic" src="../../src/images/test.png">
+            <div class="g-m-des">
+                <p class="des-name"><img src="../../src/images/_female.svg">米宝</p>
+                <p class="des-age">6岁10个月</p>
+            </div>
+            <div class="g-right-arrow"></div>
+        </li>
+        <li class="babyLists-box">
+            <div class="g-left-icon choose"  data-babyId="111"><i></i></div>
+            <img class="g-m-pic" src="../../src/images/goods.jpg">
+            <div class="g-m-des">
+                <p class="des-name"><img src="../../src/images/_male.svg">米宝</p>
+                <p class="des-age">6岁10个月</p>
+            </div>
+            <div class="g-right-arrow"></div>
+        </li>
+        <div class="add-baby-btn">
+            <button>添加宝宝</button>
+        </div>
+    </ul>
+
+</div>
+
+<script src="../../src/js/lib/jquery-2.1.4.js"></script>
+<script src="../../src/js/lib/rem.js"></script>
+<script src="../../src/js/lib/fastclick.js"></script>
+
+<script>
+    $(function () {
+        FastClick.attach(document.body);
+    });
+
+    localStorage.removeItem("selectedBabyInfo");
+    $('.g-left-icon').on('click',function () {
+        $(this).toggleClass('choose').toggleClass('choosed');
+        $(this).parents('.babyLists-box').siblings().children('.g-left-icon').removeClass('choosed').addClass('choose');
+
+        var selectedBaby_id = $('.choosed').data('babyid');
+        var g_m_pic_url = $('.choosed').siblings('.g-m-pic').attr('src');
+        var selectedBaby = {"babyId":selectedBaby_id,"babyImgUrl":g_m_pic_url}
+        /*存储选取宝宝信息*/
+        localStorage.setItem("selectedBabyInfo", JSON.stringify(selectedBaby));
+        window.location.href=document.referrer;
+    })
+
+
+
+</script>
+
+<script>
+</script>
+</body>
+</html>

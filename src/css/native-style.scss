@@ -1,0 +1,1330 @@
+/*签到*/
+@mixin cicle-icon($width) {
+  display: inline-block;
+  width: $width;
+  height: $width;
+  background: #5be1b6;
+  border-radius: 50%;
+  position: absolute;
+}
+
+@mixin reservation-cicle-icon($width) {
+  display: inline-block;
+  width: $width;
+  height: $width;
+  border-radius: 50%;
+}
+
+@mixin list-icon($width,$height,$url) {
+  display: inline-block;
+  width: $width;
+  height: $height;
+  background-image: url($url);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+@mixin txt-style($size,$color) {
+  font-size: $size;
+  color: $color;
+}
+
+@mixin txt-pos($height,$lineHeight) {
+  height: $height;
+  line-height: $lineHeight;
+}
+
+body {
+  background-color: #E5F8F2;
+}
+
+.datepicker-inline {
+  width: 100%;
+  .table-condensed {
+    width: 8.13rem;
+    margin: 0 auto;
+    height: 6.11rem;
+    overflow: hidden;
+    //border: 1px solid orange;
+    border-collapse: separate;
+    border-spacing: 0px;
+    border-radius: 0.11rem;
+  }
+}
+
+.datepicker {
+  padding: 0;
+  border-radius: 0;
+}
+
+.dow {
+  color: #FFFFFF;
+  font-size: 0.37rem;
+  width: auto !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+}
+
+.datepicker .datepicker-switch:hover, .datepicker .next:hover, .datepicker .prev:hover, .datepicker tfoot tr th:hover {
+  background: none;
+}
+
+.datepicker td {
+  font-size: .37rem;
+  //padding: .2rem 0;
+}
+
+.datepicker td, .datepicker th {
+  height: .2rem;
+  border: 0;
+  border-radius: 0;
+}
+
+.prev {
+  display: inline-block;
+  //margin-right: 20px;
+  width: .42rem;
+  height: .5rem;
+  vertical-align: middle;
+  background-image: url("../images/left.png") !important;
+  background-size: 100% 100%;
+  background-repeat: no-repeat !important;
+  background-size: contain !important;
+}
+
+.next {
+  display: inline-block;
+  //margin-left: 20px;
+  width: .42rem;
+  height: .5rem;
+  vertical-align: middle;
+  background-image: url("../images/right.png") !important;
+  background-size: 100% 100%;
+  background-repeat: no-repeat !important;
+  background-size: contain !important;
+}
+
+.picker-box {
+  width: 80%;
+  margin: 0 auto;
+  height: 1.29rem;
+  line-height: 1.2rem;
+  .datepicker-switch {
+    padding: 0 .27rem;
+    font-size: 0.37rem;
+    vertical-align: middle;
+  }
+}
+
+#sandbox-container {
+  position: relative;
+  margin: 0 auto;
+  margin-top: .4rem;
+  border: 0.04rem solid #5BE1B6;
+  width: 9.2rem;
+  height: 8.99rem;
+  box-sizing: border-box;
+  border-radius: 0.13rem;
+  .top-left-icon {
+    @include cicle-icon(.21rem);
+    left: .13rem;
+    top: .13rem;
+  }
+  .top-right-icon {
+    @include cicle-icon(.21rem);
+    right: .13rem;
+    top: .13rem;
+  }
+
+  .bottom-left-icon {
+    @include cicle-icon(.21rem);
+    left: .13rem;
+    bottom: .13rem;
+  }
+
+  .bottom-right-icon {
+    @include cicle-icon(.21rem);
+    right: .13rem;
+    bottom: .13rem;
+  }
+  .sign-txt {
+    position: absolute;
+    bottom: .95rem;
+    text-align: center;
+    font-size: .37rem;
+    width: 100%;
+  }
+  .sign-box {
+    width: 100%;
+    position: absolute;
+    bottom: -.5rem;
+    text-align: center;
+    .sign-btn {
+      display: inline-block;
+
+      height: 1rem;
+      width: 4.85rem;
+
+      background-image: url(../images/button.png);
+      background-size: 4.85rem 1rem;
+
+      background-repeat: no-repeat;
+      background-position: center;
+      /* text-align: center; */
+    }
+  }
+
+}
+
+// 已经签到过后的样式
+.hasSigned {
+  background-size: contain;
+  background-image: url(../images/circle-bg.png) !important;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: none !important;
+}
+
+// 清除点击的动态样式
+.active.day {
+  color: #000 !important;
+  background: none;
+
+}
+
+/*
+签到日历
+*/
+.g-integral-container {
+  position: relative;
+  border-top: 0.01rem solid rgba(91, 225, 182, 1);
+  margin-top: 1.17rem;
+  margin-left: .4rem;
+  margin-right: .4rem;
+  .integral-title {
+    position: absolute;
+    top: -.32rem;
+    left: calc(50% - .9rem - .18rem);
+    padding: 0 .36rem;
+    //width: 1.8rem;
+    font-size: .45rem;
+    text-align: center;
+    background-color: #E5F8F2;
+  }
+  .integral-box {
+    width: 100%;
+    height: 5rem;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    .g-lists-box {
+      .g-item-box {
+        display: inline-block;
+        float: left;
+        margin-top: .75rem;
+        margin-right: .27rem;
+        height: 4rem;
+        .item-pic {
+          width: 2.67rem;
+          height: 2.67rem;
+        }
+        .goods-title {
+          padding-top: .15rem;
+          font-size: .37rem;
+          color: #333;
+        }
+        .integral-num {
+          color: #F7A173;
+          font-size: .29rem;
+        }
+      }
+    }
+  }
+}
+
+/*
+遮罩层
+*/
+
+.mask {
+  display: none;
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  z-index: 1001;
+  -moz-opacity: 0.6;
+  opacity: .6;
+  filter: alpha(opacity=88);
+  overflow: hidden;
+}
+
+.maskImg-container {
+  display: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 10%;
+  z-index: 1002;
+  background-image: url(../images/sign-success.png);
+  background-size: 8rem 7rem;
+  background-repeat: no-repeat;
+  background-position: top center;
+  .close {
+    width: 1rem;
+    margin: 0 auto;
+  }
+  .close:after {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    top: 7.27rem;
+    width: 1rem;
+    height: 1rem;
+    background-image: url(../images/close.png);
+    background-size: 100% 100%;
+    z-index: 2003;
+  }
+
+  .txt-container {
+    text-align: center;
+    position: relative;
+    color: #6D3E31;
+    font-family: 'HYTiaoTiaoTiJ';
+    font-size: 0.48rem;
+    top: 4rem;
+    .integral-txt {
+      padding-top: .4rem;
+      color: #FEC731;
+      font-size: 0.53rem;
+    }
+  }
+}
+
+/*预约*/
+
+.reservation {
+  background-color: #EEE;
+  .lists-container {
+    background-color: #eee;
+
+    .list-box {
+      margin-bottom: .27rem;
+      height: 7.52rem;
+      padding: 0 .4rem;
+      background-color: #fff;
+
+      .g-box {
+        background: #fff;
+        padding: .27rem 0;
+        .img-container {
+          display: block;
+          width: 100%;
+          height: 5.33rem;
+
+          background-image: url("../images/goods1.jpg");
+          background-size: cover;
+          background-repeat: no-repeat;
+          background-position: center;
+
+          border-radius: 5px;
+        }
+      }
+      //border: 1px solid red;
+
+      .list-des {
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        position: relative;
+        .g-left-img, .g-m-des {
+          display: inline-block;
+          float: left;
+        }
+        .g-left-img {
+          img {
+            @include reservation-cicle-icon(1.07rem)
+          }
+        }
+        .g-m-des {
+          padding-left: .13rem;
+          .des-title {
+            @include txt-style(.4rem, #333)
+          }
+          .des-position {
+            @include txt-style(.29rem, #999)
+          }
+          .des-number-people {
+            @include txt-style(.29rem, #999)
+          }
+        }
+        .s-r-box {
+          position: absolute;
+          right: 0;
+          display: inline-block;
+          //width: 2.13rem;
+          text-align: right;
+
+          //border: 1px solid blue;
+
+          .txt-distance {
+            @include txt-style(.29rem, #999);
+            text-align: right;
+            .distance-num {
+            }
+          }
+          .reservation-btn {
+            display: inline-block;
+            width: 2.13rem;
+            height: .67rem;
+            padding-top: .13rem;
+            background-image: url(../../src/images/reservationBtn.png);
+            background-size: 100% .67rem;
+            background-repeat: no-repeat;
+            background-position: right;
+          }
+        }
+      }
+    }
+
+  }
+}
+
+/*
+预约-机构详情
+*/
+.organization-details {
+  background-color: #EEE;
+}
+
+.details-box {
+
+  .test-img {
+    /*  图片大小
+      width:750px;
+      height:440px;*/
+    width: 100%;
+    height: 5.87rem;
+    background-image: url("../images/goods1.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+
+  }
+  //.g-details-img {
+  //  width: 100%;
+  //  height: 5.87rem;
+  //}
+  .details-lists-box {
+    background-color: #fff;
+    .g-title {
+      padding: .27rem .4rem;
+      border-bottom: 1px solid #D3D3D3;
+      .title-name {
+        @include txt-style(.4rem, #333);
+      }
+      .title-number {
+        @include txt-style(.29rem, #999);
+      }
+    }
+    .g-location {
+      display: flex;
+      align-items: center;
+      padding: 0 .4rem;
+      border-bottom: 1px solid #D3D3D3;
+      height: .93rem;
+
+      @include txt-style(.35rem, #363636);
+      & i:first-child {
+        display: inline-block;
+        margin-right: .28rem;
+        width: .4rem;
+        height: .4rem;
+        background-image: url(../images/address.svg);
+        background-size: .36rem 100%;
+        background-repeat: no-repeat;
+        background-position: center;
+      }
+      & i:last-child {
+        display: inline-block;
+        margin-right: .28rem;
+        width: .2rem;
+        height: .4rem;
+        background-image: url(../images/jiantou.svg);
+        background-size: .36rem 100%;
+        background-repeat: no-repeat;
+        background-position: center;
+        position: absolute;
+        right: 0;
+      }
+    }
+    .g-phone {
+      display: flex;
+      align-items: center;
+      padding: 0 .4rem;
+      height: .93rem;
+      & i:first-child {
+        display: inline-block;
+        margin-right: .28rem;
+        width: .4rem;
+        height: .4rem;
+        background-image: url(../images/phone.svg);
+        background-size: .36rem 100%;
+        background-repeat: no-repeat;
+        background-position: center;
+      }
+      & i:last-child {
+        display: inline-block;
+        margin-right: .28rem;
+        width: .2rem;
+        height: .4rem;
+        background-image: url(../images/jiantou.svg);
+        background-size: .36rem 100%;
+        background-repeat: no-repeat;
+        background-position: center;
+        position: absolute;
+        right: 0;
+      }
+      a {
+        @include txt-style(.35rem, #363636);
+        width: 100%;
+      }
+    }
+  }
+}
+
+.g-reservationOrder-details {
+  margin-top: .27rem;
+  margin-bottom: .39rem;
+  background-color: #fff;
+
+  @include txt-style(0.37rem, #333);
+  li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 .4rem;
+    /* height: 1.19rem; */
+    /* line-height: 1.19rem; */
+    border-bottom: 1px solid #D3D3D3;
+    padding: .41rem 0;
+    @include txt-style(0.37rem, #333);
+
+    img {
+      padding-right: .1rem;
+      @include reservation-cicle-icon(.8rem);
+    }
+    .arrowDirection {
+      transform: rotate(90deg);
+    }
+    &:first-child {
+      margin: 0;
+      padding: 0 .4rem;
+      height: .93rem;
+      font-weight: bold;
+      @include txt-style(0.4rem, #333);
+    }
+    &:last-child {
+      border: 0;
+      justify-content: stretch;
+    }
+  }
+  .get-babyInfo {
+    display: block;
+
+    .dropDown-list {
+      display: none;
+      margin-top: .23rem;
+      background-color: #F8F8F8;
+      line-height: .88rem;
+      .info-box {
+        display: inline-block;
+        width: 33%;
+        text-align: center;
+      }
+    }
+    .info-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .info-img-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        float: right;
+        img:last-of-type {
+          margin-right: .13rem;
+        }
+        i {
+          display: inline-block;
+          margin-right: .28rem;
+          width: .2rem;
+          height: .4rem;
+          background-image: url(../images/jiantou-huise.svg);
+          background-size: .36rem 100%;
+          background-repeat: no-repeat;
+          background-position: center;
+          position: absolute;
+          right: 0;
+        }
+      }
+    }
+
+  }
+}
+
+.des-box {
+  margin-top: .27rem;
+  min-height: 4rem;
+  background: #fff;
+  .des-content {
+    padding-top: .72rem;
+    text-align: center;
+    @include txt-style(.4rem, #363636)
+  }
+
+}
+
+.reservationNowBtn {
+  margin-top: 1.2rem;
+  height: 1.07rem;
+  background-image: url("../images/reservationNowBtn.png");
+  background-size: 8rem 1.07rem;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* 预约信息详情填写*/
+.reservation-details {
+  height: 100%;
+
+  background-color: #EEE;
+  .g-lists-container {
+    .lists-box {
+
+      li {
+        display: flex;
+        position: relative;
+        box-sizing: border-box;
+        align-items: center;
+        justify-content: space-between;
+        height: 1.17rem;
+        padding: .4rem;
+        text-align: right;
+        @include txt-style(0.37rem, #333);
+        background-color: #fff;
+        border-bottom: 0.01rem solid #e0dcdc;
+        input {
+          border: 0;
+          text-align: right;
+          height: 1.1rem;
+          width: 75%;
+          @include txt-style(.37rem, #999);
+        }
+
+        span {
+          float: right;
+          font-size: 0.37rem;
+          color: #999;
+          display: flex;
+          align-items: center;
+          @include txt-style(.37rem, #999);
+        }
+        .babyInfo_pic {
+          position: absolute;
+          border-radius: 50%;
+          right: .8rem;
+          @include list-icon(.8rem, .8rem, "../images/test.png");
+        }
+        i {
+          display: inline-block;
+          position: absolute;
+          right: 0;
+          width: .4rem;
+          height: .4rem;
+          background-image: url(../images/jiantou-huise.svg);
+          background-size: .36rem 100%;
+          background-repeat: no-repeat;
+          background-position: center;
+        }
+
+      }
+      .input-left:after {
+        content: '';
+        display: inline-block;
+        width: .2rem;
+        height: .4rem;
+        background-image: url(../images/jiantou-huise.svg);
+        background-size: .36rem 100%;
+        background-repeat: no-repeat;
+        background-position: center;
+      }
+      .note-box {
+        display: flex;
+        padding: .4rem .4rem;
+        height: auto;
+        text-align: left;
+        .g-txt-area {
+          @include txt-style(0.37rem, #333);
+          border: 1px solid #D3D3D3;
+          box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+          -webkit-appearance: none;
+        }
+      }
+    }
+
+    .submit-btn {
+      display: block;
+      margin: 1.07rem auto 0 auto;
+      width: 8rem;
+      height: 1.07rem;
+      line-height: 1.07rem;
+      background: rgba(91, 225, 182, 1);
+      border-radius: 0.13rem;
+      text-align: center;
+
+      span {
+        @include txt-style(.4rem, #fff);
+      }
+    }
+
+  }
+  @keyframes myfirst {
+    from {
+      bottom: -25rem;
+    }
+    to {
+      bottom: 0;
+    }
+  }
+
+  @-moz-keyframes myfirst /* Firefox */
+  {
+    from {
+      bottom: -25rem;
+    }
+    to {
+      bottom: 0;
+    }
+  }
+
+  @-webkit-keyframes myfirst /* Safari 和 Chrome */
+  {
+    from {
+      bottom: -25rem;
+    }
+    to {
+      bottom: 0;
+    }
+  }
+
+  @-o-keyframes myfirst /* Opera */
+  {
+    from {
+      bottom: -25rem;
+    }
+    to {
+      bottom: 0;
+    }
+  }
+
+  .popMask {
+    display: none;
+    background: #fff;
+    bottom: 0;
+    -webkit-animation: myfirst 0.3s;
+    animation: myfirst 0.3s;
+    position: absolute;
+    z-index: 99;
+    height: auto;
+    width: 100%;
+    .popMask-title {
+      height: 1.2rem;
+      line-height: 1.2rem;
+      @include txt-style(0.4rem, #333);
+      text-align: center;
+      border-bottom: 1px solid #D3D3D3;
+    }
+    .popMask-item-box {
+      overflow: hidden;
+      //padding-bottom: .2rem;
+      @include txt-style(0.37rem, #333);
+      & > li {
+        display: inline-block;
+        float: left;
+        width: 50%;
+        height: .93rem;
+
+        line-height: .93rem;
+        text-align: center;
+      }
+      .clicked {
+        color: #6EE5BF;
+      }
+      .left-day {
+        display: inline-block;
+        float: left;
+        width: 50%;
+        li {
+          background-color: #F0F0F0;
+          height: .93rem;
+          line-height: .93rem;
+          text-align: center;
+        }
+        .clicked-leftDay {
+          background-color: #fff;
+        }
+      }
+      .right-time {
+        width: 50%;
+        display: inline-block;
+        float: left;
+        li {
+          width: 50%;
+          display: inline-block;
+          float: left;
+          box-sizing: border-box;
+          height: .93rem;
+          line-height: .93rem;
+          padding: 0 1rem;
+        }
+      }
+    }
+  }
+
+  .reservation-mask {
+    display: none;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 98;
+  }
+
+}
+
+/*宝宝信息*/
+.babyInfo {
+  background-color: #eee;
+}
+
+.g-babyInfo-container {
+  .add-baby-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 1.33rem;
+    background-color: #fff;
+    button {
+      width: 8rem;
+      height: 1.07rem;
+      border: 0;
+      background-color: #5BE1B6;
+      color: #fff;
+      font-size: 0.4rem;
+      border-radius: 0.13rem;
+    }
+  }
+
+  /*尚未添加宝宝*/
+  .g-info-empty {
+    position: relative;
+    min-height: 100vh;
+    .empty-pic {
+      width: 100%;
+      height: 10rem;
+      background-image: url("../images/personal-information.png");
+      background-size: 4.97rem 5.12rem;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+  }
+
+  /*有宝宝列表*/
+  .g-babyLists-container {
+    background-color: #eee;
+    .babyLists-box {
+      display: flex;
+      align-items: center;
+      margin-bottom: .27rem;
+      padding: .4rem;
+      position: relative;
+      background-color: #fff;
+      div {
+        display: inline-block;
+      }
+      .g-left-icon.choosed {
+        @include list-icon(.4rem, .4rem, "../images/choosed.svg");
+        background-size: .4rem .4rem;
+      }
+      .g-left-icon.choose {
+        @include list-icon(.4rem, .4rem, "../images/choose.svg");
+        background-size: .4rem .4rem;
+      }
+      .g-right-arrow {
+        position: absolute;
+        right: .4rem;
+        @include list-icon(.19rem, .35rem, "../images/jiantou.svg");
+      }
+      .g-m-pic {
+        vertical-align: middle;
+        padding: 0 .27rem;
+        @include reservation-cicle-icon(1.33rem);
+      }
+      .g-m-des {
+        .des-name {
+          display: flex;
+          align-items: center;
+          @include txt-style(.4rem, #3D3D3D);
+          img {
+            display: inline-block;
+            width: .29rem;
+            height: .29rem;
+          }
+        }
+        .des-age {
+          @include txt-style(0.35rem, #999)
+        }
+      }
+    }
+  }
+
+}
+
+.success-icon {
+  width: 1rem;
+  height: 1rem;
+  /* border: 1px solid red; */
+  display: inline-block;
+}
+
+/*物流详情*/
+.logistics {
+  background-color: #eee;
+  .flowChart {
+    background-color: #fff;
+    display: table;
+    padding-left: .4rem;
+  }
+
+  .flowChart-left {
+    display: table-cell;
+    width: .4rem;
+    flex-shrink: 0;
+    border-right: 1px solid #D3D3D3;
+  }
+
+  .flowChart-right {
+    display: table-cell;
+    width: 100%;
+    margin: .4rem 0 0 0;
+  }
+
+  .flowChart .dashed {
+    margin-left: .4rem;
+  }
+
+  .flowChart .oneNode {
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+
+  .flowChart .check {
+    width: .45rem;
+    height: .45rem;
+    position: relative;
+    left: -.25rem;
+    top: -.3rem;
+  }
+
+  .flowChart .check-before {
+    background-image: url(../images/dot.svg);
+    background-size: .23rem .23rem;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .flowChart .check-now {
+    background-image: url(../images/circle.png);
+    background-size: cover;
+    background-position: center;
+  }
+
+  .flowChart .NodeDetail {
+    flex-grow: 1;
+    border-bottom: 1px solid #D3D3D3;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .NodeDetail-content {
+    display: flex;
+    align-items: center;
+    height: 1.33rem;
+  }
+}
+
+.logistics-title-box {
+  display: flex;
+  align-items: center;
+  height: 2.13rem;
+  background-color: #fff;
+  margin-bottom: .27rem;
+  padding-left: .6rem;
+  .kuaidi_icon {
+    display: inline-block;
+    width: 1.33rem;
+    height: 1.33rem;
+    padding-right: .4rem;
+
+  }
+  .title-item {
+    .name-txt {
+      @include txt-style(.37rem, #333)
+    }
+    .number-txt {
+      @include txt-style(.29rem, #999)
+    }
+  }
+
+}
+
+.NodeDetail-content {
+  .des-txt {
+    @include txt-style(.37rem, #333)
+  }
+  .time-txt {
+    @include txt-style(.37rem, #999)
+  }
+}
+
+/*活动详情*/
+.activities-details {
+  margin-bottom: 2rem;
+  background-color: #EEE;
+  .details-box {
+
+    .test-img {
+      /*  图片大小
+        width:750px;
+        height:440px;*/
+      width: 100%;
+      height: 5.87rem;
+      background-image: url("../images/goods1.jpg");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+
+    }
+    //.g-details-img {
+    //  width: 100%;
+    //  height: 5.87rem;
+    //}
+    .details-lists-box {
+      background-color: #fff;
+      .g-title {
+        padding: .27rem .4rem;
+        border-bottom: 1px solid #D3D3D3;
+        span {
+          @include txt-style(.29rem, #999);
+        }
+        p + span:first-of-type {
+          padding-right: .53rem;
+        }
+        i {
+          padding-left: .1rem;
+        }
+        .title-name {
+          @include txt-style(.48rem, #333);
+        }
+        .title-number {
+          @include txt-style(.29rem, #999);
+        }
+        .price-txt {
+          display: inline-block;
+          float: right;
+          @include txt-style(0.48rem, #FF2920)
+        }
+      }
+
+      .g-time {
+        display: flex;
+        align-items: center;
+        padding: 0 .4rem;
+        border-bottom: 1px solid #D3D3D3;
+        height: .93rem;
+
+        @include txt-style(.35rem, #363636);
+        & i:first-child {
+          display: inline-block;
+          margin-right: .28rem;
+          width: .4rem;
+          height: .4rem;
+          background-image: url(../images/time.svg);
+          background-size: .36rem 100%;
+          background-repeat: no-repeat;
+          background-position: center;
+        }
+      }
+
+      .g-location {
+        display: flex;
+        align-items: center;
+        padding: 0 .4rem;
+        border-bottom: 1px solid #D3D3D3;
+        height: .93rem;
+
+        @include txt-style(.35rem, #363636);
+        & i:first-child {
+          display: inline-block;
+          margin-right: .28rem;
+          width: .4rem;
+          height: .4rem;
+          background-image: url(../images/address.svg);
+          background-size: .36rem 100%;
+          background-repeat: no-repeat;
+          background-position: center;
+        }
+        & i:last-child {
+          display: inline-block;
+          margin-right: .28rem;
+          width: .2rem;
+          height: .4rem;
+          background-image: url(../images/jiantou.svg);
+          background-size: .36rem 100%;
+          background-repeat: no-repeat;
+          background-position: center;
+          position: absolute;
+          right: 0;
+        }
+      }
+      .g-person {
+        display: flex;
+        align-items: center;
+        padding: 0 .4rem;
+        height: .93rem;
+        font-size: 0.35rem;
+        color: #363636;
+        & i:first-child {
+          display: inline-block;
+          margin-right: .28rem;
+          width: .4rem;
+          height: .4rem;
+          background-image: url(../images/person-number.svg);
+          background-size: .36rem 100%;
+          background-repeat: no-repeat;
+          background-position: center;
+        }
+        & i:last-child {
+          display: inline-block;
+          margin-right: .28rem;
+          width: .2rem;
+          height: .4rem;
+          background-image: url(../images/jiantou.svg);
+          background-size: .36rem 100%;
+          background-repeat: no-repeat;
+          background-position: center;
+          position: absolute;
+          right: 0;
+        }
+        a {
+          @include txt-style(.35rem, #363636);
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  .initiator-box {
+    margin-top: .27rem;
+    background-color: #fff;
+
+    .box-container {
+      padding: .27rem .4rem;
+    }
+    .left-img {
+      width: 1.2rem;
+      height: 1.2rem;
+      img {
+        width: 100%;
+      }
+      display: inline-block;
+      float: left;
+    }
+    .right-des {
+      display: inline-block;
+      width: 84%;
+      padding-left: .27rem;
+      .des-title {
+        @include txt-style(.37rem, #333)
+      }
+      .des-content {
+        @include txt-style(.35rem, #999)
+
+      }
+    }
+    .initiator-name {
+      margin: 0 .4rem;
+      padding: .27rem 0;
+      @include txt-style(.4rem, #333);
+      border-bottom: 1px solid #D3D3D3;
+    }
+  }
+
+  .activities-des-box {
+    margin-top: .27rem;
+    background-color: #fff;
+
+    @include txt-style(0.48rem, #333);
+    text-align: center;
+  }
+
+  .footer-box {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    div {
+      display: inline-block;
+    }
+    .left-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      float: left;
+      width: 30%;
+      height: 1.31rem;
+      background-color: #fff;
+      color: #000;
+      span {
+        display: block;
+        text-align: center;
+        @include txt-style(0.29rem, #333)
+      }
+
+      .icon-container {
+        display: inline-block;
+        .collection-icon {
+          @include list-icon(.59rem, .53rem, "../images/collection.svg");
+          display: block;
+          margin: 0 auto;
+
+        }
+        .collected-icon {
+          @include list-icon(.59rem, .53rem, "../images/red-collection.png");
+          display: block;
+          margin: 0 auto;
+
+        }
+      }
+
+    }
+    .right-icon {
+      width: 70%;
+      background-color: #5BE1B6;
+      line-height: 1.31rem;
+      text-align: center;
+      vertical-align: middle;
+      @include txt-style(0.48rem, #fff)
+    }
+  }
+  .mask-container {
+    display: none;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #000;
+    opacity: .4;
+  }
+
+  @keyframes pop_form {
+    from {  bottom: -5rem;  }
+    to {  bottom: 0px;  }
+  }
+
+  @-moz-keyframes pop_form /* Firefox */
+  {
+    from {  bottom: -5rem;  }
+    to {  bottom: 0px;  }
+  }
+
+  @-webkit-keyframes pop_form /* Safari 和 Chrome */
+  {
+    from {  bottom: -5rem;  }
+    to {  bottom: 0px;  }
+  }
+
+  @-o-keyframes pop_form /* Opera */
+  {
+    from {  bottom: -5rem;  }
+    to {  bottom: 0px;  }
+  }
+
+  .mask-info {
+    display: none;
+    position: fixed;
+    bottom: 0rem;
+    width: 100%;
+    height: 4.75rem;
+    background-color: #fff;
+    animation:pop_form 0.5s infinite;
+    -moz-animation:pop_form 0.5s infinite; /* Firefox */
+    -webkit-animation:pop_form 0.5s infinite; /* Safari and Chrome */
+    -o-animation:pop_form 0.5s infinite; /* Opera */
+    animation-iteration-count: 1;
+
+    p {
+      height: .93rem;
+      line-height: .93rem;
+      padding-left: .4rem;
+      @include txt-style(0.4rem, #333);
+      border-bottom: 1px solid #D3D3D3;
+    }
+    .list-box {
+      margin: 0 1rem;
+      li {
+        border-bottom: 1px solid #5BE1B6;
+      }
+      input {
+        height: 1.15rem;
+        line-height: 1.15rem;
+        width: 100%;
+        @include txt-style(0.37rem, #999);
+        border: 0;
+      }
+    }
+    .btn-box {
+      div {
+        display: inline-block;
+        position: absolute;
+        bottom: 0;
+        width: 50%;
+        height: 1.07rem;
+        text-align: center;
+        line-height: 1.07rem;
+        border: 1px solid #5BE1B6;
+      }
+      .left-cancel {
+        left: 0;
+        background-color: #fff;
+        @include txt-style(0.4rem, #333);
+      }
+      .right-sure {
+        right: 0;
+        background-color: #5BE1B6;
+        @include txt-style(0.4rem, #fff);
+      }
+    }
+  }
+}

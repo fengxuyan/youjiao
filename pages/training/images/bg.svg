@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="750px" height="334px" viewBox="0 0 750 334" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 44.1 (41455) - http://www.bohemiancoding.com/sketch -->
+    <title>bg@2x</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="0%" y1="50%" x2="100%" y2="50%" id="linearGradient-1">
+            <stop stop-color="#77AEFF" offset="0%"></stop>
+            <stop stop-color="#4D95FF" offset="100%"></stop>
+        </linearGradient>
+        <rect id="path-2" x="0" y="0" width="750" height="334"></rect>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="个人中心-copy-4" transform="translate(0.000000, -128.000000)">
+            <g id="Group-17" transform="translate(0.000000, 128.000000)">
+                <g id="bg">
+                    <mask id="mask-3" fill="white">
+                        <use xlink:href="#path-2"></use>
+                    </mask>
+                    <use id="Mask" fill="url(#linearGradient-1)" xlink:href="#path-2"></use>
+                    <g id="Group-16" mask="url(#mask-3)" fill="#FFFFFF">
+                        <g transform="translate(86.000000, -169.000000)" id="Oval-3">
+                            <circle opacity="0.0299999993" cx="293" cy="293" r="293"></circle>
+                            <circle opacity="0.049999997" cx="293" cy="293" r="205.1"></circle>
+                            <circle opacity="0.0800000057" cx="293" cy="293" r="117.2"></circle>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

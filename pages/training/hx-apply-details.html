@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta charset="UTF-8">
+    <title>会销讲座申请详情</title>
+    <link rel="stylesheet" href="../../src/css/lib/default.css">
+    <link rel="stylesheet" href="train_css/train.css">
+
+    <link rel="stylesheet" href="../../src/css/lib/weui.min.css">
+    <link rel="stylesheet" href="../../src/css/lib/jquery-weui.min.css">
+</head>
+<body ontouchstart class="pxApplyDetails-container">
+
+<div class="g-status">
+    <div class="status-box">
+
+        <div class="tj">
+            <div class="left">
+                <span class="submit-icon submit-completed"></span>
+                <span class="status-txt">已提交</span>
+                <i class="sp-line"></i>
+            </div>
+            <div class="line"></div>
+        </div>
+
+        <div class="sp">
+            <div class="left">
+                <span class="audit-icon"></span>
+
+                <!--申请成功 ，添加 audit-completed-->
+                <!--<span class="audit-icon audit-completed"></span>-->
+                <span class="status-txt">审批中</span>
+            </div>
+            <div class="line"></div>
+        </div>
+        <div class="sq">
+            <div class="left">
+                <span class="success-icon"></span>
+
+                <!--申请成功 ，添加 success-completed-->
+                <!--<span class="success-icon success-completed"></span>-->
+                <span class="status-txt">申请成功</span>
+                <i class="sp-line"></i>
+                <!--<i class="sp-line audit-completed"></i>-->
+            </div>
+            <div class="line"></div>
+        </div>
+    </div>
+
+</div>
+
+<div class="lists-box">
+    <p>会销讲座申请单</p>
+    <ul class="details-box">
+        <i class="top-left-circle"></i>
+        <i class="top-right-circle"></i>
+        <li><span class="details-name">园所名字：</span><span class="details-content">南京米其儿早教中心</span></li>
+        <li><span class="details-name">会销时间：</span><span class="details-content">南京米其儿早教中心</span></li>
+        <li><span class="details-name">会销地区：</span><span class="details-content">教学</span></li>
+        <li><span class="details-name">会销地点：</span><span class="details-content">多元智能课程</span></li>
+        <li><span class="details-name">备注：</span><span  class="details-content">纵观国际，幼儿教育产业蓬勃前行，龙头兼 具了产业创新及整合能力。此次我们将为大 家解析我国的幼教行业发展状况以此给大家 做为参考。</span></li>
+    </ul>
+    <ul class="cx-box">
+        <i class="top-left-circle"></i>
+        <i class="top-right-circle"></i>
+        <li><span class="details-name">预期人数：</span><span class="details-content">南京米其儿早教中心</span></li>
+        <li><span class="details-name">会销对接人：</span><span class="details-content">教学</span></li>
+        <li><span class="details-name">联系方式：</span><span class="details-content">多元智能课程</span></li>
+    </ul>
+    <ul class="apply-box">
+        <i class="top-left-circle"></i>
+        <i class="top-right-circle"></i>
+        <li><span>申请编号：</span><span class="sq-txt">NO.34177902276514</span></li>
+        <li><span>申请时间：</span><span class="sq-txt">2018-05-11 14:23</span></li>
+    </ul>
+
+
+</div>
+<footer class="bottom-btn">
+
+    <div class="left-back"><span class="back-box"><i></i><span>撤回</span></span></div><div class="right-edit"><span class="edit-box"><i></i><span>修改</span></span></div>
+</footer>
+<script src="../../src/js/lib/jquery-2.1.4.js"></script>
+<script src="../../src/js/lib/jquery-weui.js"></script>
+<script src="../../src/js/lib/rem.js"></script>
+<script src="../../src/js/lib/fastclick.js"></script>
+
+<script>
+    $(function () {
+        FastClick.attach(document.body);
+    });
+
+    $('.back-box').on('click',function () {
+//        $.modal({
+//            title: "提示",
+//            text: "确定要撤回此申请吗?",
+//            buttons: [
+//                {
+//                    text: "取消", onClick: function () {}
+//                },
+//                {
+//                    text: "确定", onClick: function () {}
+//                }
+//            ]
+//        });
+
+        $.modal({
+            title: "提示",
+            text: "已在审批中，不可以修改/撤回",
+            buttons: [
+                {
+                    text: "知道了", onClick: function () {}
+                }
+                ]
+        });
+
+    })
+
+</script>
+</body>
+</html>

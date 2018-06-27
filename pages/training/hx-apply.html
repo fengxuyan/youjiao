@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta charset="UTF-8">
+    <title>会销申请</title>
+    <link rel="stylesheet" href="../../src/css/lib/default.css">
+    <link rel="stylesheet" href="train_css/train.css">
+    <link rel="stylesheet" href="../../src/css/lib/swiper.min.css">
+</head>
+<body ontouchstart class="pxApply-container">
+
+<div class="g-swiper">
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="images/bg.svg"></div>
+            <div class="swiper-slide"><img src="images/bg.svg"></div>
+            <div class="swiper-slide"><img src="images/bg.svg"></div>
+        </div>
+    </div>
+</div>
+
+
+
+<ul class="apply-lists-box">
+    <p class="box-title">会销讲座申请</p>
+    <li class="g-item"><span><i>*</i>园所名字</span><input type="text" placeholder="请输入园所名字"></li>
+    <li class="g-item"><span><i>*</i>会销时间</span><input id="px_time" type="date"></li>
+    <li class="g-item"><span><i>*</i>会销地区</span>
+        <select>
+            <option value="">请选择</option>
+            <option value="saab">Saab</option>
+            <option value="opel">Opel</option>
+            <option value="audi">Audi</option>
+        </select>
+    </li>
+    <li class="g-item"><span><i>*</i>会销地点</span>
+        <select>
+            <option value="">请选择</option>
+            <option value="saab">Saab</option>
+            <option value="opel">Opel</option>
+            <option value="audi">Audi</option>
+        </select>
+    </li>
+</ul>
+
+<ul class="apply-lists-box g-status">
+    <p class="box-title">参与情况</p>
+    <li class="g-item"><span><i>*</i>预期人数</span><input type="text" placeholder="请输入参训人数"></li>
+    <li class="g-item"><span><i>*</i>会销对接人</span><input type="text" placeholder="请输入对接人姓名"></li>
+    <li class="g-item"><span><i>*</i>联系方式</span><input type="tel" placeholder="请输入对接人手机号"></li>
+</ul>
+
+<div class="apply-lists-box g-note">
+    <p class="box-title">备注</p>
+    <textarea id="textarea" rows="4" cols="50" maxlength="200" placeholder="请输入备注信息，不超过200字"></textarea>
+    <span><i class="inputed-num">0</i>/200</span>
+</div>
+
+<div class="submit-btn">提交</div>
+
+<script src="../../src/js/lib/jquery-2.1.4.js"></script>
+<script src="../../src/js/lib/rem.js"></script>
+<script src="../../src/js/lib/fastclick.js"></script>
+<script src="../../src/js/lib/swiper.min.js"></script>
+
+<script>
+    $(function () {
+        FastClick.attach(document.body);
+    });
+    var mySwiper = new Swiper('.swiper-container', {
+//        autoplay:true,//等同于以下设置
+        autoplay: {
+            delay: 1000,
+            stopOnLastSlide: false,
+            disableOnInteraction: true,
+        },
+    });
+    limitLetters();
+    setFaultTime();
+    /*字符数限制*/
+    function limitLetters() {
+        isLock = false;//是否锁定当前的输入状态
+        //输入即可触发【不区分中文和英文】
+        document.querySelector('#textarea').addEventListener('input',function(){
+            //只有在非中文输入状态的时候，才能更改数字
+            if(!isLock){
+                var num = this.value.length;
+                $('.inputed-num').text(num);
+                if(num>119){
+                    var cObj = document.getElementById("textarea");
+                    cObj.setAttribute("readOnly",'true');
+                }
+            }
+        })
+        //中文输入开始的时候，会触发此函数
+        document.querySelector('#textarea').addEventListener('compositionstart',function(){
+            isLock = true;//此时在输入中，加锁
+        })
+        //中文输入结束的时候，会触发此方法
+        document.querySelector('#textarea').addEventListener('compositionend',function(){
+            var num = this.value.length;
+            $('.inputed-num').text(num)
+            isLock = false;
+            if(num>119){
+                var cObj = document.getElementById("textarea");
+                cObj.setAttribute("readOnly",'true');
+            }
+        })
+    }
+
+    /*设置默认培训时间*/
+    function setFaultTime() {
+        var now = new Date();
+        //格式化日，如果小于9，前面补0
+        var day = ("0" + now.getDate()).slice(-2);
+        //格式化月，如果小于9，前面补0
+        var month = ("0" + (now.getMonth() + 1)).slice(-2);
+        //拼装完整日期格式
+        var today = now.getFullYear() + "-" + (month) + "-" + (day);
+        //完成赋值
+        $('#px_time').val(today);
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <link rel="stylesheet" href="../../src/css/lib/default.css">
+    <link rel="stylesheet" href="train_css/train.css">
+
+</head>
+<body ontouchstart class="login-container">
+
+<ul class="login-box">
+    <li><i class="personal-icon"></i><input id="name" type="text" placeholder="请输入账号"></li>
+    <li><i class="keys-icon"></i><input id="pwd" type="password" placeholder="请输入密码"></li>
+</ul>
+<div class="login-btn">登录</div>
+
+
+<script src="../../src/js/lib/jquery-2.1.4.js"></script>
+
+<script src="../../src/js/lib/rem.js"></script>
+<script src="../../src/js/lib/fastclick.js"></script>
+<script>
+    $(function () {
+        FastClick.attach(document.body);
+    });
+
+    /*用户名和密码登录接口*/
+
+    var name = $('#name').val();
+    var pwd = $('#pwd').val();
+
+    var params = {"name": name, "pwd": pwd};
+    var url = "";
+
+    $('.login-btn').on('click', function (e) {
+        $.ajax({
+            type: "post",
+            url: url,
+//      data: "para="+para,  此处data可以为 a=1&b=2类型的字符串 或 json数据。
+            data: params,
+            cache: false,
+            async: false,
+            dataType: "json",
+            success: function (data, textStatus, jqXHR) {
+                if ("true" == data.flag) {
+//                    alert("合法！");
+                    return true;
+                } else {
+//                    alert("不合法！错误信息如下："+data.errorMsg);
+                    return false;
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+//                alert("请求失败！");
+            }
+        });
+        location.href = 'personal.html'
+    });
+</script>
+</body>
+</html>
